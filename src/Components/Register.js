@@ -8,8 +8,69 @@ import {
   Segment
 } from "semantic-ui-react";
 
-class SignUp extends Component {
+class Register extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      first_name: "",
+      last_name: "",
+      username: "",
+      password: "",
+      email: "",
+      street: "",
+      city: "",
+      state: "",
+      zipcode: "",
+      user: ""
+    };
+  }
+
+  handleChange = event => {
+    event.persist();
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleSignUpUserProfile = event => {
+    event.preventDefault();
+    console.log("sign up form is being submitted");
+    fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        user: {
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
+          username: this.state.username,
+          password: this.state.password,
+          email: this.state.email
+        }
+      })
+    })
+      .then(resp => resp.json())
+      .then(response => {
+        console.log("Sign Up Response from fetch: ", response);
+        if (response.error === "failed to create user") {
+          alert("This user already exists");
+        } else {
+          this.setState({ user: response.user });
+          //store jwt token in local storage
+          localStorage.setItem("jwt", response.jwt);
+        }
+      });
+  };
+
   render() {
+    console.log("Current SignUp State: ", this.state);
+
+    //alternate sign up page
+    //https://semantic-ui.com/collections/message.html
+
     return (
       <Grid centered columns={2}>
         <Grid.Column>
@@ -17,30 +78,41 @@ class SignUp extends Component {
             Sign Up
           </Header>
           <Segment>
-            <Form size="large">
+            <Form
+              size="large"
+              onSubmit={event => this.handleSignUpUserProfile(event)}
+            >
               <Form.Input
                 fluid
                 icon="address book"
                 iconPosition="left"
                 placeholder="First Name"
+                name="first_name"
+                onChange={this.handleChange}
               />
               <Form.Input
                 fluid
                 icon="address book"
                 iconPosition="left"
                 placeholder="Last Name"
+                name="last_name"
+                onChange={this.handleChange}
               />
               <Form.Input
                 fluid
                 icon="user"
                 iconPosition="left"
-                placeholder="Username"
+                placeholder="Email"
+                name="email"
+                onChange={this.handleChange}
               />
               <Form.Input
                 fluid
                 icon="envelope"
                 iconPosition="left"
-                placeholder="Email"
+                placeholder="Username"
+                name="username"
+                onChange={this.handleChange}
               />
               <Form.Input
                 fluid
@@ -48,18 +120,24 @@ class SignUp extends Component {
                 iconPosition="left"
                 placeholder="Password"
                 type="password"
+                name="password"
+                onChange={this.handleChange}
               />
               <Form.Input
                 fluid
                 icon="home"
                 iconPosition="left"
                 placeholder="Street"
+                name="street"
+                onChange={this.handleChange}
               />
               <Form.Input
                 fluid
                 icon="home"
                 iconPosition="left"
                 placeholder="City"
+                name="city"
+                onChange={this.handleChange}
               />
               <Form.Input
                 fluid
@@ -67,6 +145,8 @@ class SignUp extends Component {
                 iconPosition="left"
                 placeholder="State"
                 control="select"
+                name="state"
+                onChange={this.handleChange}
               >
                 <option value="">State</option>
                 <option value="AL">Alabama</option>
@@ -127,6 +207,8 @@ class SignUp extends Component {
                 iconPosition="left"
                 placeholder="ZipCode"
                 type="number"
+                name="zipcode"
+                onChange={this.handleChange}
               />
               <Button
                 color="green"
@@ -139,7 +221,7 @@ class SignUp extends Component {
             </Form>
           </Segment>
           <Message>
-            Already signed up? <a href="#">Login</a>
+            Already registered? <a href="www.google.com">Login</a>
           </Message>
         </Grid.Column>
       </Grid>
@@ -147,4 +229,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default Register;

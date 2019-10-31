@@ -74,8 +74,8 @@ class Login extends Component {
                 icon="lock"
                 iconPosition="left"
                 placeholder="Password"
-                name="password"
                 type="password"
+                name="password"
                 onChange={this.handleChange}
               />
               <Button
@@ -88,9 +88,7 @@ class Login extends Component {
               </Button>
             </Form>
           </Segment>
-          <Message>
-            Not registered yet? <a href="https://google.com"> Sign Up </a>
-          </Message>
+          <Message>Not registered yet? Sign Up</Message>
         </Grid.Column>
       </Grid>
     );
