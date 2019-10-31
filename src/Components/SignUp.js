@@ -51,19 +51,19 @@ class SignUp extends Component {
               />
               <Form.Input
                 fluid
-                // icon="address book"
+                icon="home"
                 iconPosition="left"
                 placeholder="Street"
               />
               <Form.Input
                 fluid
-                //icon="address book"
+                icon="home"
                 iconPosition="left"
                 placeholder="City"
               />
               <Form.Input
                 fluid
-                //icon="user"
+                icon="home"
                 iconPosition="left"
                 placeholder="State"
                 control="select"
@@ -123,7 +123,7 @@ class SignUp extends Component {
               </Form.Input>
               <Form.Input
                 fluid
-                //icon="lock"
+                icon="home"
                 iconPosition="left"
                 placeholder="ZipCode"
                 type="number"
@@ -134,7 +134,7 @@ class SignUp extends Component {
                 size="large"
                 onClick={() => console.log("Clicked")}
               >
-                Next
+                Sign Up
               </Button>
             </Form>
           </Segment>
