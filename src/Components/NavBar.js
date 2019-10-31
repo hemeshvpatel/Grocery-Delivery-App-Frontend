@@ -1,25 +1,39 @@
 import React, { Component } from "react";
-import { Container, Image, Menu } from "semantic-ui-react";
+import { Container, Menu, Button, Icon } from "semantic-ui-react";
+import { NavLink } from "react-router-dom";
 
 class NavBar extends Component {
   render() {
     return (
-      <Menu>
-        <Container>
-          <Menu.Item as="a" header>
-            <Image height="25px" width="25px" src="shoppingcart.png" />
-            Groceries Delivered!
+      <Container>
+        <Menu>
+          <Menu.Item>
+            <img src={"./shoppingcart.png"} alt="header" />
           </Menu.Item>
-          <Menu.Menu position="right">
-            <Menu.Item as="a" name="login">
-              Login
-            </Menu.Item>
-            <Menu.Item as="a" name="register">
-              Register
-            </Menu.Item>
-          </Menu.Menu>
-        </Container>
-      </Menu>
+          <Menu.Item as={NavLink} to="/about" name="home" position="left">
+            <Button animated color="orange">
+              <Button.Content visible>About Us</Button.Content>
+              <Button.Content hidden>
+                <Icon name="users" />
+              </Button.Content>
+            </Button>
+          </Menu.Item>
+          <Menu.Item as={NavLink} to="/register" name="home">
+            <Button animated="fade" position="right" color="orange">
+              <Button.Content visible>Register</Button.Content>
+              <Button.Content hidden>$0.00/month</Button.Content>
+            </Button>
+          </Menu.Item>
+          <Menu.Item as={NavLink} to="/login" name="home">
+            <Button animated="vertical" position="right" color="orange">
+              <Button.Content visible>Log in</Button.Content>
+              <Button.Content hidden>
+                <Icon name="shop" />
+              </Button.Content>
+            </Button>
+          </Menu.Item>
+        </Menu>
+      </Container>
     );
   }
 }
