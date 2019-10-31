@@ -15,7 +15,8 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      user: ""
+      user: "",
+      isLoggedIn: false
     };
   }
 
@@ -48,13 +49,18 @@ class Login extends Component {
         this.setState({ user: response.user });
         //store jwt token in local storage
         localStorage.setItem("jwt", response.jwt);
+        return response;
+      })
+      .then(response => {
+        this.props.history.push("/");
+        this.setState({ isLoggedIn: true });
       });
   };
 
   render() {
     console.log("Current Login State = ", this.state);
     return (
-      <Grid centered columns={2}>
+      <Grid verticalAlign="middle" columns={2} centered>
         <Grid.Column>
           <Header as="h2" textAlign="center">
             Login
@@ -82,7 +88,7 @@ class Login extends Component {
                 color="green"
                 fluid
                 size="large"
-                onClick={() => console.log("Clicked")}
+                // onClick={() => console.log("Clicked")}
               >
                 Login
               </Button>

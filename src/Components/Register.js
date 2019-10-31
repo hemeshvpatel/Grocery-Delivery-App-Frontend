@@ -72,10 +72,10 @@ class Register extends Component {
     //https://semantic-ui.com/collections/message.html
 
     return (
-      <Grid centered columns={2}>
+      <Grid verticalAlign="middle" centered columns={2}>
         <Grid.Column>
           <Header as="h2" textAlign="center">
-            Sign Up
+            Register to start shopping!
           </Header>
           <Segment>
             <Form
