@@ -31,8 +31,8 @@ class Login extends Component {
   handleLogin = event => {
     event.preventDefault();
     //console.log("login form is being submitted");
-    // fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/login", {
-    fetch("http://localhost:3000/api/v1/login", {
+    fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/login", {
+      // fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
