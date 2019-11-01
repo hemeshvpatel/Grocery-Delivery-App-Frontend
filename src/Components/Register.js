@@ -36,7 +36,8 @@ class Register extends Component {
   handleSignUpUserProfile = event => {
     event.preventDefault();
     //console.log("sign up form is being submitted");
-    fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/users", {
+    // fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/users", {
+    fetch("http://localhost:3000/api/v1/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +67,7 @@ class Register extends Component {
   };
 
   render() {
-    //console.log("Current SignUp State: ", this.state);
+    console.log("Current SignUp State: ", this.state);
 
     return (
       <Grid verticalAlign="middle" centered columns={2}>

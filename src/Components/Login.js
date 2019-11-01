@@ -30,7 +30,8 @@ class Login extends Component {
   handleLogin = event => {
     event.preventDefault();
     //console.log("login form is being submitted");
-    fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/login", {
+    // fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/login", {
+    fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -68,7 +69,7 @@ class Login extends Component {
   render() {
     //console.log("Current Login State = ", this.state);
     return (
-      <Grid verticalAlign="middle" columns={2} centered>
+      <Grid verticalAlign="middle" columns={2} color="grey" centered>
         <Grid.Column>
           <Header as="h2" textAlign="center">
             Log in or Register to start shopping!

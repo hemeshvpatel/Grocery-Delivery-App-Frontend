@@ -23,6 +23,7 @@ class NavBar extends Component {
               </Button.Content>
             </Button>
           </Menu.Item>
+
           {localStorage.getItem("jwt") ? (
             <Menu.Item as={NavLink} to="/cart" name="home" position="right">
               <Button animated color="orange">

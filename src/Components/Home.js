@@ -26,7 +26,7 @@ class Home extends Component {
           <h2>Only The Fresh Market will be active for demo purposes</h2>
           <br></br>
         </div>
-        <Grid columns={3} divided padded>
+        <Grid relaxed columns={3} divided padded>
           <Grid.Row>
             <Grid.Column>
               <Image
