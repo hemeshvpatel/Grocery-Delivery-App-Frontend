@@ -3,13 +3,8 @@ import { Container, Menu, Button, Icon, Flag } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 
 class NavBar extends Component {
-  handleLogoutClick = event => {
-    event.preventDefault();
-    localStorage.removeItem("jwt");
-    this.context.history.push("/");
-  };
-
   render() {
+    console.log("NavBar props", this.props);
     return (
       <Container>
         <Menu>
@@ -34,7 +29,7 @@ class NavBar extends Component {
                 animated="vertical"
                 position="right"
                 color="orange"
-                onClick={event => this.handleLogoutClick(event)}
+                onClick={this.props.handleLogoutClick}
               >
                 <Button.Content visible>Log out</Button.Content>
                 <Button.Content hidden>
