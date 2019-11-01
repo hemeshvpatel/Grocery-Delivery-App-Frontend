@@ -52,18 +52,26 @@ class Login extends Component {
         return response;
       })
       .then(response => {
+        localStorage.getItem("jwt")
+          ? this.setState({
+              isLoggedIn: true
+            })
+          : this.setState({ isLoggedIn: false });
         this.props.history.push("/");
-        this.setState({ isLoggedIn: true });
       });
   };
 
+  handleClickHeretoRegister() {
+    this.props.history.push("/register");
+  }
+
   render() {
-    console.log("Current Login State = ", this.state);
+    //console.log("Current Login State = ", this.state);
     return (
       <Grid verticalAlign="middle" columns={2} centered>
         <Grid.Column>
           <Header as="h2" textAlign="center">
-            Login
+            Log in to start shopping!
           </Header>
           <Segment>
             <Form size="large" onSubmit={event => this.handleLogin(event)}>
@@ -94,7 +102,12 @@ class Login extends Component {
               </Button>
             </Form>
           </Segment>
-          <Message>Not registered yet? Sign Up</Message>
+          <Message align="center">
+            Not registered yet? No worries!{" "}
+            <Button onClick={this.handleClickHeretoRegister}>
+              Click to Register
+            </Button>
+          </Message>
         </Grid.Column>
       </Grid>
     );
