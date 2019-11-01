@@ -4,6 +4,7 @@ import Home from "./Components/Home";
 import About from "./Components/About";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
+import Products from "./Components/Products";
 import {
   BrowserRouter as Router,
   Switch,
@@ -54,6 +55,7 @@ class App extends Component {
             ) : (
               <Redirect from="/" to="/login" />
             )}
+            <Route exact path="/products" component={Products} />
           </Switch>
           <Route
             exact

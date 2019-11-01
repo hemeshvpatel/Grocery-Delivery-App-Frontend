@@ -7,6 +7,7 @@ import {
   Segment,
   Divider
 } from "semantic-ui-react";
+import { withRouter, Redirect } from "react-router-dom";
 
 class Login extends Component {
   constructor() {
@@ -58,6 +59,7 @@ class Login extends Component {
               isLoggedIn: true
             })
           : this.setState({ isLoggedIn: false });
+        console.log("about to push to home");
         this.props.history.push("/");
       });
   };
@@ -68,7 +70,8 @@ class Login extends Component {
 
   render() {
     //console.log("Current Login State = ", this.state);
-    return (
+
+    return !localStorage.getItem("jwt") ? (
       <Grid verticalAlign="middle" columns={2} color="grey" centered>
         <Grid.Column>
           <Header as="h2" textAlign="center">
@@ -150,8 +153,10 @@ class Login extends Component {
           </Message> */}
         </Grid.Column>
       </Grid>
+    ) : (
+      <Redirect to="/" />
     );
   }
 }
 
-export default Login;
+export default withRouter(Login);
