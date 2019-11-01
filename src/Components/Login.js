@@ -4,7 +4,6 @@ import {
   Form,
   Grid,
   Header,
-  Message,
   Segment,
   Divider
 } from "semantic-ui-react";
@@ -30,7 +29,7 @@ class Login extends Component {
 
   handleLogin = event => {
     event.preventDefault();
-    console.log("login form is being submitted");
+    //console.log("login form is being submitted");
     fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/login", {
       method: "POST",
       headers: {

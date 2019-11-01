@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 class NavBar extends Component {
   render() {
-    console.log("NavBar props", this.props);
+    //console.log("NavBar props", this.props);
     return (
       <Container>
         <Menu>
@@ -15,7 +15,7 @@ class NavBar extends Component {
             <Flag name="us" />
           </Menu.Item>
 
-          <Menu.Item as={NavLink} to="/about" name="home" position="right">
+          <Menu.Item as={NavLink} to="/about" name="home" position="left">
             <Button animated color="orange">
               <Button.Content visible>About Us</Button.Content>
               <Button.Content hidden>
@@ -23,6 +23,16 @@ class NavBar extends Component {
               </Button.Content>
             </Button>
           </Menu.Item>
+          {localStorage.getItem("jwt") ? (
+            <Menu.Item as={NavLink} to="/cart" name="home" position="right">
+              <Button animated color="orange">
+                <Button.Content visible>My Cart</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="shopping cart" />
+                </Button.Content>
+              </Button>
+            </Menu.Item>
+          ) : null}
           {localStorage.getItem("jwt") ? (
             <Menu.Item>
               <Button

@@ -35,7 +35,7 @@ class Register extends Component {
 
   handleSignUpUserProfile = event => {
     event.preventDefault();
-    console.log("sign up form is being submitted");
+    //console.log("sign up form is being submitted");
     fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/users", {
       method: "POST",
       headers: {
@@ -66,10 +66,7 @@ class Register extends Component {
   };
 
   render() {
-    console.log("Current SignUp State: ", this.state);
-
-    //alternate sign up page
-    //https://semantic-ui.com/collections/message.html
+    //console.log("Current SignUp State: ", this.state);
 
     return (
       <Grid verticalAlign="middle" centered columns={2}>
