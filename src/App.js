@@ -20,10 +20,6 @@ class App extends Component {
     };
   }
 
-  loggedIn = isLoggedIn => {
-    this.setState({ isLoggedIn: isLoggedIn });
-  };
-
   componentDidMount() {
     localStorage.getItem("jwt")
       ? this.setState({
@@ -32,12 +28,25 @@ class App extends Component {
       : this.setState({ isLoggedIn: false });
   }
 
+  loggedIn = isLoggedIn => {
+    this.setState({ isLoggedIn: isLoggedIn });
+  };
+
+  handleLogoutClick = event => {
+    event.preventDefault();
+    localStorage.removeItem("jwt");
+    this.setState({ isLoggedIn: false });
+  };
+
   render() {
     console.log("App Current State: ", this.state);
     return (
       <Router>
         <div>
-          <NavBar isLoggedIn={this.state.isLoggedIn} />
+          <NavBar
+            isLoggedIn={this.state.isLoggedIn}
+            handleLogoutClick={event => this.handleLogoutClick(event)}
+          />
           <Route exact path="/about" component={About} />
           <Switch>
             {localStorage.getItem("jwt") ? (

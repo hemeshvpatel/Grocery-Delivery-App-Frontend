@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Grid, Image, Header } from "semantic-ui-react";
+import { Container, Grid, Image } from "semantic-ui-react";
 
 class Home extends Component {
   constructor() {
