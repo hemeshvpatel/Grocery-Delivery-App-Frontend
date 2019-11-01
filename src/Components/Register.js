@@ -220,8 +220,8 @@ class Register extends Component {
               </Button>
             </Form>
           </Segment>
-          <Message>
-            Already registered? <a href="www.google.com">Login</a>
+          <Message align="center">
+            Already registered? <a href="a">Login here</a>
           </Message>
         </Grid.Column>
       </Grid>
