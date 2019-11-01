@@ -6,9 +6,6 @@ class NavBar extends Component {
   handleLogoutClick = event => {
     event.preventDefault();
     localStorage.removeItem("jwt");
-    this.setState({
-      isLoggedIn: false
-    });
     this.context.history.push("/");
   };
 

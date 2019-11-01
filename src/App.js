@@ -1,18 +1,13 @@
 import React, { Component } from "react";
-import { Container } from "semantic-ui-react";
 import NavBar from "./Components/NavBar";
-import SearchBar from "./Components/SearchBar";
 import Home from "./Components/Home";
 import About from "./Components/About";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
-import RetailerSelection from "./Components/RetailerSelection";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  NavLink,
   Redirect
 } from "react-router-dom";
 
