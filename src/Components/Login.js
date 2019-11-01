@@ -5,7 +5,8 @@ import {
   Grid,
   Header,
   Message,
-  Segment
+  Segment,
+  Divider
 } from "semantic-ui-react";
 
 class Login extends Component {
@@ -61,7 +62,7 @@ class Login extends Component {
       });
   };
 
-  handleClickHeretoRegister() {
+  handleRegisterClick() {
     this.props.history.push("/register");
   }
 
@@ -71,9 +72,9 @@ class Login extends Component {
       <Grid verticalAlign="middle" columns={2} centered>
         <Grid.Column>
           <Header as="h2" textAlign="center">
-            Log in to start shopping!
+            Log in or Register to start shopping!
           </Header>
-          <Segment>
+          {/* <Segment>
             <Form size="large" onSubmit={event => this.handleLogin(event)}>
               <Form.Input
                 fluid
@@ -101,13 +102,52 @@ class Login extends Component {
                 Login
               </Button>
             </Form>
+          </Segment> */}
+          <Segment placeholder>
+            <Grid columns={2} relaxed="very" stackable>
+              <Grid.Column>
+                <Form size="large" onSubmit={event => this.handleLogin(event)}>
+                  <Form.Input
+                    icon="user"
+                    iconPosition="left"
+                    label="Username"
+                    placeholder="Username"
+                    name="username"
+                    onChange={this.handleChange}
+                  />
+                  <Form.Input
+                    icon="lock"
+                    iconPosition="left"
+                    label="Password"
+                    placeholder="Password"
+                    name="password"
+                    type="password"
+                    onChange={this.handleChange}
+                  />
+
+                  <Button color="green" content="Login" />
+                </Form>
+              </Grid.Column>
+
+              <Grid.Column verticalAlign="middle">
+                <Button
+                  color="orange"
+                  content="Register"
+                  icon="signup"
+                  size="big"
+                  onClick={event => this.handleRegisterClick(event)}
+                />
+              </Grid.Column>
+            </Grid>
+
+            <Divider vertical>Or</Divider>
           </Segment>
-          <Message align="center">
+          {/* <Message align="center">
             Not registered yet? No worries!{" "}
             <Button onClick={this.handleClickHeretoRegister}>
               Click to Register
             </Button>
-          </Message>
+          </Message> */}
         </Grid.Column>
       </Grid>
     );
