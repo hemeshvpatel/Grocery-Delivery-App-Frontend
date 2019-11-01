@@ -17,11 +17,32 @@ import {
 } from "react-router-dom";
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      isLoggedIn: false
+    };
+  }
+
+  loggedIn = isLoggedIn => {
+    this.setState({ isLoggedIn: isLoggedIn });
+  };
+
+  componentDidMount() {
+    localStorage.getItem("jwt")
+      ? this.setState({
+          isLoggedIn: true
+        })
+      : this.setState({ isLoggedIn: false });
+  }
+
   render() {
+    console.log("App Current State: ", this.state);
     return (
       <Router>
         <div>
-          <NavBar />
+          <NavBar isLoggedIn={this.state.isLoggedIn} />
           <Route exact path="/about" component={About} />
           <Switch>
             {localStorage.getItem("jwt") ? (
@@ -33,9 +54,15 @@ class App extends Component {
           <Route
             exact
             path="/login"
-            render={routeProps => <Login {...routeProps} />}
+            render={routeProps => (
+              <Login {...routeProps} loggedIn={this.loggedIn} />
+            )}
           />
-          <Route exact path="/register" component={Register} />
+          <Route
+            exact
+            path="/register"
+            render={routeProps => <Register {...routeProps} />}
+          />
         </div>
       </Router>
     );
