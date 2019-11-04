@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Container, Menu, Button, Icon, Flag } from "semantic-ui-react";
+import {
+  Container,
+  Responsive,
+  Menu,
+  Button,
+  Icon,
+  Flag
+} from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 
 class NavBar extends Component {
@@ -15,14 +22,33 @@ class NavBar extends Component {
             <Flag name="us" />
           </Menu.Item>
 
-          <Menu.Item as={NavLink} to="/about" name="home" position="left">
+          {/* <Menu.Item as={NavLink} to="/about" name="home" position="left">
             <Button animated color="orange">
               <Button.Content visible>About Us</Button.Content>
               <Button.Content hidden>
                 <Icon name="users" />
               </Button.Content>
             </Button>
-          </Menu.Item>
+          </Menu.Item> */}
+
+          {/* <Menu.Menu position="left">
+            <Menu.Item>
+              <Responsive
+                {...Responsive.onlyMobile}
+                as={Button}
+                content="Switch to desktop version"
+                icon="desktop"
+                labelPosition="left"
+              />
+              <Responsive
+                as={Button}
+                content="Switch to mobile version"
+                icon="mobile"
+                labelPosition="left"
+                minWidth={Responsive.onlyTablet.minWidth}
+              />
+            </Menu.Item>
+          </Menu.Menu> */}
 
           {localStorage.getItem("jwt") ? (
             <Menu.Item as={NavLink} to="/cart" name="home" position="right">
@@ -49,7 +75,7 @@ class NavBar extends Component {
               </Button>
             </Menu.Item>
           ) : (
-            <Menu.Item as={NavLink} to="/login" name="home">
+            <Menu.Item as={NavLink} to="/login" name="home" position="right">
               <Button animated="vertical" position="right" color="orange">
                 <Button.Content visible>Log in</Button.Content>
                 <Button.Content hidden>

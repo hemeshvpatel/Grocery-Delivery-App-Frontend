@@ -107,7 +107,7 @@ class Login extends Component {
             </Form>
           </Segment> */}
           <Segment placeholder>
-            <Grid columns={2} relaxed="very" stackable>
+            <Grid stackable columns={2} relaxed="very">
               <Grid.Column>
                 <Form size="large" onSubmit={event => this.handleLogin(event)}>
                   <Form.Input
