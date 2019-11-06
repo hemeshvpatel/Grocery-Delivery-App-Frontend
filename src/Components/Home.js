@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Grid, Image } from "semantic-ui-react";
+import { withRouter, Redirect } from "react-router-dom";
 
 class Home extends Component {
   constructor() {
@@ -90,4 +91,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withRouter(Home);

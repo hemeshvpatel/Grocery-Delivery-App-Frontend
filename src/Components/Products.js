@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Grid, Image, Card, Icon } from "semantic-ui-react";
+import { withRouter, Redirect } from "react-router-dom";
 
 class Products extends Component {
   constructor() {
@@ -29,6 +30,8 @@ class Products extends Component {
 
   render() {
     console.log("Products Page Current State: ", this.state);
+    console.log("Products page, jwt? ", !localStorage.getItem("jwt"));
+
     return (
       <Container textAlign="center">
         <div>
@@ -63,4 +66,4 @@ class Products extends Component {
   }
 }
 
-export default Products;
+export default withRouter(Products);
