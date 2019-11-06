@@ -7,27 +7,15 @@ import {
   Icon,
   Flag
 } from "semantic-ui-react";
-import { Link, withRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class NavBar extends Component {
-  handleLogInButton = event => {
-    this.props.history.push("/login");
-  };
-
-  handleMyCartButton = event => {
-    this.props.history.push("/cart");
-  };
-
-  handleCartHomeButton = event => {
-    this.props.history.push("/");
-  };
-
   render() {
     //console.log("NavBar props", this.props);
     return (
       <Container>
         <Menu>
-          <Menu.Item onClick={this.handleCartHomeButton}>
+          <Menu.Item>
             <img src={"./shoppingcart.png"} alt="header" />
           </Menu.Item>
           <Menu.Item>
@@ -63,8 +51,8 @@ class NavBar extends Component {
           </Menu.Menu> */}
 
           {localStorage.getItem("jwt") ? (
-            <Menu.Item position="right">
-              <Button animated color="orange" onClick={this.handleMyCartButton}>
+            <Menu.Item as={NavLink} to="/cart" name="home" position="right">
+              <Button animated color="orange">
                 <Button.Content visible>My Cart</Button.Content>
                 <Button.Content hidden>
                   <Icon name="shopping cart" />
@@ -87,13 +75,8 @@ class NavBar extends Component {
               </Button>
             </Menu.Item>
           ) : (
-            <Menu.Item position="right">
-              <Button
-                animated="vertical"
-                position="right"
-                color="orange"
-                onClick={this.handleLogInButton}
-              >
+            <Menu.Item as={NavLink} to="/login" name="home" position="right">
+              <Button animated="vertical" position="right" color="orange">
                 <Button.Content visible>Log in</Button.Content>
                 <Button.Content hidden>
                   <Icon name="shop" />
@@ -107,4 +90,4 @@ class NavBar extends Component {
   }
 }
 
-export default withRouter(NavBar);
+export default NavBar;

@@ -16,11 +16,12 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      user: "",
+      currentUser: "",
       isLoggedIn: false
     };
   }
 
+  //Collect info as it is typed and update state
   handleChange = event => {
     event.persist();
     this.setState({
@@ -30,9 +31,12 @@ class Login extends Component {
 
   handleLogin = event => {
     event.preventDefault();
-    //console.log("login form is being submitted");
-    fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/login", {
-      // fetch("http://localhost:3000/api/v1/login", {
+    this.fetchLogin();
+    this.props.history.push("/");
+  };
+
+  fetchLogin() {
+    fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,8 +51,8 @@ class Login extends Component {
     })
       .then(resp => resp.json())
       .then(response => {
-        //console.log("Login Response from fetch: ", response);
-        this.setState({ user: response.user });
+        // console.log("Login Response from fetch: ", response);
+        this.setState({ currentUser: response.user });
         //store jwt token in local storage
         localStorage.setItem("jwt", response.jwt);
         return response;
@@ -60,16 +64,15 @@ class Login extends Component {
             })
           : this.setState({ isLoggedIn: false });
         console.log("about to push to home");
-        this.props.history.push("/");
       });
-  };
+  }
 
   handleRegisterClick() {
     this.props.history.push("/register");
   }
 
   render() {
-    //console.log("Current Login State = ", this.state);
+    console.log("Current Login State = ", this.state);
 
     return !localStorage.getItem("jwt") ? (
       <Grid verticalAlign="middle" columns={2} color="grey" centered>
@@ -109,7 +112,7 @@ class Login extends Component {
           <Segment placeholder>
             <Grid stackable columns={2} relaxed="very">
               <Grid.Column>
-                <Form size="large" onSubmit={event => this.handleLogin(event)}>
+                <Form size="large" onSubmit={this.handleLogin}>
                   <Form.Input
                     icon="user"
                     iconPosition="left"
