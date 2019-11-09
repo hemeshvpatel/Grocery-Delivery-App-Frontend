@@ -219,7 +219,7 @@ class Register extends Component {
             </Form>
           </Segment>
           <Message align="center">
-            Already registered? <a href="a">Login here</a>
+            Already registered? <a href="/login">Login here</a>
           </Message>
         </Grid.Column>
       </Grid>

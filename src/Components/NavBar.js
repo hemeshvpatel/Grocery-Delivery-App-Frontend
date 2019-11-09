@@ -19,7 +19,7 @@ class NavBar extends Component {
   };
 
   handleCartHomeButton = event => {
-    this.props.history.push("/");
+    this.props.history.push("/products");
   };
 
   render() {
