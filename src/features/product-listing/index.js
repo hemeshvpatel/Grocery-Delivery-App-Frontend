@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import ProductListItem from "./product-list-item";
-import { Grid, Card } from "semantic-ui-react";
+import { Grid, Card, Dimmer, Loader } from "semantic-ui-react";
 
 const useFetch = url => {
   const [data, setData] = useState(null);
@@ -27,12 +27,16 @@ export default function ProductListing() {
   return (
     <div>
       {loading ? (
-        <div>Loading...</div>
+        <div>
+          <Dimmer active>
+            <Loader size="massive">Loading</Loader>
+          </Dimmer>
+        </div>
       ) : (
         <Grid>
           <Grid.Column width={3}>Categories and Filters</Grid.Column>
           <Grid.Column width={13}>
-            <Card.Group>
+            <Card.Group centered>
               {data.map(product => (
                 <ProductListItem product={product} />
               ))}
