@@ -3,7 +3,7 @@ import { Container, Menu, Button, Icon, Flag } from "semantic-ui-react";
 
 import { Link, withRouter } from "react-router-dom";
 
-class NavBar extends Component {
+class Navigation extends Component {
   handleLogInButton = event => {
     this.props.history.push("/login");
   };
@@ -87,4 +87,4 @@ class NavBar extends Component {
   }
 }
 
-export default withRouter(NavBar);
+export default withRouter(Navigation);
