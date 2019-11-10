@@ -50,6 +50,7 @@ class Home extends Component {
                     src="https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/062011/heb_logo_gloss.ai_.png?itok=M-w9tUZX"
                     size="medium"
                     verticalAlign="middle"
+                    disabled
                   />
                 </Grid.Column>
                 <Grid.Column>
@@ -58,6 +59,7 @@ class Home extends Component {
                     src="https://www.bing.com/th?id=OIP.I06Uh5b1HK0EcVcZTY6X9gHaGG&w=211&h=173&c=7&o=5&dpr=1.8&pid=1.7"
                     size="medium"
                     verticalAlign="middle"
+                    disabled
                   />
                 </Grid.Column>
               </Grid.Row>
@@ -65,23 +67,29 @@ class Home extends Component {
               <Grid.Row>
                 <Grid.Column>
                   <Image
+                    centered
                     src="https://www.bing.com/th?id=OIP._AtbpaapvsdGyQH4ICX2qgAAAA&pid=Api&rs=1"
                     size="medium"
                     verticalAlign="middle"
+                    disabled
                   />
                 </Grid.Column>
                 <Grid.Column>
                   <Image
+                    centered
                     src="https://www.bing.com/th?id=OIP.zX-j35X7OaG35FEjm0lcIwHaHa&w=222&h=210&c=7&o=5&dpr=1.8&pid=1.7"
                     size="medium"
                     verticalAlign="middle"
+                    disabled
                   />
                 </Grid.Column>
                 <Grid.Column>
                   <Image
+                    centered
                     src="http://frugalbits.com/wp-content/uploads/2012/01/Trader-Joes-Logo.jpg"
                     size="medium"
                     verticalAlign="middle"
+                    disabled
                   />
                 </Grid.Column>
               </Grid.Row>

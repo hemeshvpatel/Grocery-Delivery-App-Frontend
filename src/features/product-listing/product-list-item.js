@@ -1,18 +1,19 @@
 import React from "react";
 
+import AddBtn from "./add-btn";
+import RmvBtn from "./rmv-btn";
+
 import { Image, Card, Icon, Button } from "semantic-ui-react";
 
 export default function ProductListItem(props) {
   // console.log("product-list-item", props);
+  // const thisItemInCart = props.cart.filter(
+  //   item => item.id === props.product.id
+  // )[0];
+
   return (
     <Card key={props.product.id} color="green">
-      <Image
-        src={props.product.image_url}
-        size="tiny"
-        verticalAlign="middle"
-        wrapped
-        ui={false}
-      />
+      <Image src={props.product.image_url} size="small" centered />
       <Card.Content textAlign="center">
         <Card.Header>{props.product.name}</Card.Header>
         <Card.Meta>ID: {props.product.id}</Card.Meta>
@@ -27,9 +28,18 @@ export default function ProductListItem(props) {
       </Card.Content>
 
       <Card.Content extra textAlign="center">
-        <Button color="green" onClick={e => this.handleAddToCart(e, props)}>
-          <Icon name="add to cart" /> Add to Cart
-        </Button>
+        <AddBtn
+          cartItem={props.cartItem}
+          product={props.product}
+          addToCart={props.addToCart}
+        />
+        {props.cartItem ? (
+          <RmvBtn
+            cartItem={props.cartItem}
+            product={props.product}
+            removeFromCart={props.removeFromCart}
+          />
+        ) : null}
       </Card.Content>
     </Card>
   );

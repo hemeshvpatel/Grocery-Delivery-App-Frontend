@@ -1,14 +1,14 @@
 import React from "react";
-import Cart from "../features/cart";
+import Checkout from "../features/checkout";
 
 import { Container } from "semantic-ui-react";
 
-export default function CartPage(props) {
+export default function CheckoutPage(props) {
   return (
     <Container>
       <div>
-        <h2>My Cart</h2>
-        <Cart />
+        <h2>Checkout</h2>
+        <Checkout />
       </div>
     </Container>
   );
