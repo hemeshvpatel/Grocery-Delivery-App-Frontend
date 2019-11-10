@@ -31,7 +31,7 @@ class Login extends Component {
   handleLogin = event => {
     event.preventDefault();
     this.fetchLogin();
-    this.props.history.push("/");
+    this.props.history.push("/home");
   };
 
   fetchLogin() {
