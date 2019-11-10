@@ -6,40 +6,44 @@ import { Grid, Card, Dimmer, Loader } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { cartItemsWithQuantities } from "../cart";
 
-const useFetch = url => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+import fetchApi from "../../modules/fetch-api";
+// const useFetch = url => {
+//   const [data, setData] = useState(null);
+//   const [loading, setLoading] = useState(true);
 
-  async function fetchData() {
-    const response = await fetch(url);
-    const json = await response.json();
-    setData(json);
-    setLoading(false);
-  }
+//   async function fetchData() {
+//     const response = await fetch(url);
+//     const json = await response.json();
+//     setData(json);
+//     setLoading(false);
+//   }
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+//   useEffect(() => {
+//     fetchData();
+//   }, []);
 
-  return { loading, data };
-};
+//   return { loading, data };
+// };
+const loading = true;
 
-function ProductListing(props) {
-  const { loading, data } = useFetch("http://localhost:3000/api/v1/products");
+class ProductListing extends React.Component {
+  // const { loading, data } = useFetch("http://localhost:3000/api/v1/products");
   //console.log("Products Index: ", data);
-  return (
-    <div>
-      {loading ? (
-        <div>
-          <Dimmer active>
-            <Loader size="massive">Loading</Loader>
-          </Dimmer>
-        </div>
-      ) : (
-        <Grid>
-          <Grid.Column width={2}>Categories and Filters</Grid.Column>
-          <Grid.Column width={14}>
-            <Card.Group centered>
+
+  componentDidMount() {}
+
+  render() {
+    return (
+      <div>
+        {loading ? (
+          <div>
+            <Dimmer active>
+              <Loader size="massive">Loading</Loader>
+            </Dimmer>
+          </div>
+        ) : (
+          <Grid>
+            <Card.Group itemsPerRow={5}>
               {data.map(product => (
                 <ProductListItem
                   key={product.id}
@@ -52,11 +56,11 @@ function ProductListing(props) {
                 />
               ))}
             </Card.Group>
-          </Grid.Column>
-        </Grid>
-      )}
-    </div>
-  );
+          </Grid>
+        )}
+      </div>
+    );
+  }
 }
 
 function mapStateToProps(state) {

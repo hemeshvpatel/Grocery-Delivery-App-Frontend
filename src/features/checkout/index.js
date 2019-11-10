@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { Container, Grid, Card, Dimmer, Loader } from "semantic-ui-react";
+
 function Checkout(props) {
-  return <div></div>;
+  return <Container>Checkout stuff</Container>;
 }
 
 function mapStateToProps(state) {

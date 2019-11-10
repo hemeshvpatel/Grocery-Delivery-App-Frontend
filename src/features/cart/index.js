@@ -23,7 +23,9 @@ function Cart(props) {
             <Table.HeaderCell>Item Image</Table.HeaderCell>
             <Table.HeaderCell>Item Name</Table.HeaderCell>
             <Table.HeaderCell>ID</Table.HeaderCell>
+            <Table.HeaderCell>Price</Table.HeaderCell>
             <Table.HeaderCell>Quantity</Table.HeaderCell>
+            <Table.HeaderCell>Total</Table.HeaderCell>
             <Table.HeaderCell>Add</Table.HeaderCell>
             <Table.HeaderCell>Remove</Table.HeaderCell>
             <Table.HeaderCell>Remove All</Table.HeaderCell>
@@ -37,7 +39,9 @@ function Cart(props) {
               </Table.Cell>
               <Table.Cell>{item.name}</Table.Cell>
               <Table.Cell>{item.id}</Table.Cell>
-              <Table.Cell>{item.quantity}</Table.Cell>
+              <Table.Cell>${item.price}</Table.Cell>
+              <Table.Cell>x {item.quantity}</Table.Cell>
+              <Table.Cell>${item.price * item.quantity}</Table.Cell>
               <Table.Cell>
                 <Button onClick={() => props.addToCart(item)}>
                   <Icon name="add" color="green" />
