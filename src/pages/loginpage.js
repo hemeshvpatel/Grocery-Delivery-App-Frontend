@@ -35,19 +35,22 @@ class Login extends Component {
 
   fetchLogin() {
     // fetch("http://localhost:3000/api/v1/login", {
-    fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        user: {
-          username: this.state.username,
-          password: this.state.password
-        }
-      })
-    })
+    fetch(
+      "https://bypasscors.herokuapp.com/https://grocery-delivery-backend.herokuapp.com/api/v1/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          user: {
+            username: this.state.username,
+            password: this.state.password
+          }
+        })
+      }
+    )
       .then(response => response.json())
       .then(response => {
         //store jwt token in local storage
