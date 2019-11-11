@@ -37,7 +37,7 @@ class Register extends Component {
     event.preventDefault();
     //console.log("sign up form is being submitted");
     fetch(
-      "https://bypasscors.herokuapp.com/https://grocery-delivery-backend.herokuapp.com/api/v1/users",
+      "https://cors-anywhere.herokuapp.com/https://grocery-delivery-backend.herokuapp.com/api/v1/users",
       {
         // fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
