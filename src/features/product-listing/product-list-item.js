@@ -16,7 +16,7 @@ export default function ProductListItem(props) {
       <Image src={props.product.image_url} size="small" centered />
       <Card.Content textAlign="center">
         <Card.Header>{props.product.name}</Card.Header>
-        <Card.Meta>ID: {props.product.id}</Card.Meta>
+        <Card.Meta>{props.product.category}</Card.Meta>
         <Card.Description>{props.product.description}</Card.Description>
       </Card.Content>
 

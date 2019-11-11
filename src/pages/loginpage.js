@@ -15,8 +15,7 @@ class Login extends Component {
 
     this.state = {
       username: "",
-      password: "",
-      currentUser: ""
+      password: ""
     };
   }
 
@@ -31,7 +30,7 @@ class Login extends Component {
   handleLogin = event => {
     event.preventDefault();
     this.fetchLogin();
-    this.props.history.push("/home");
+    this.props.history.push("/");
   };
 
   fetchLogin() {
@@ -52,8 +51,7 @@ class Login extends Component {
       .then(response => {
         //store jwt token in local storage
         localStorage.setItem("jwt", response.jwt);
-        let currentUser = response.user;
-        this.setState({ currentUser });
+        localStorage.setItem("user", JSON.stringify(response.user));
       });
   }
 
@@ -62,7 +60,7 @@ class Login extends Component {
   }
 
   render() {
-    console.log("Current Login State = ", this.state);
+    // console.log("Current Login State = ", this.state);
 
     return !localStorage.getItem("jwt") ? (
       <Grid verticalAlign="middle" columns={2} color="grey" centered>

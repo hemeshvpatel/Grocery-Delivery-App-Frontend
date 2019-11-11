@@ -1,5 +1,4 @@
 import fetch from "isomorphic-fetch";
-require("es6-promise").polyfill();
 
 export default function fetchApi(method, url, data) {
   const body =

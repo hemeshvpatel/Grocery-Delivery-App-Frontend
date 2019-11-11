@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 import ProductListItem from "./product-list-item";
 import { Grid, Card, Dimmer, Loader } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { cartItemsWithQuantities } from "../cart";
 
 import fetchApi from "../../modules/fetch-api";
 // const useFetch = url => {
@@ -24,18 +23,31 @@ import fetchApi from "../../modules/fetch-api";
 
 //   return { loading, data };
 // };
-const loading = true;
 
 class ProductListing extends React.Component {
   // const { loading, data } = useFetch("http://localhost:3000/api/v1/products");
   //console.log("Products Index: ", data);
 
-  componentDidMount() {}
+  state = {
+    loading: true
+  };
+
+  componentDidMount() {
+    const { loadProducts } = this.props;
+    fetchApi("get", "http://localhost:3000/api/v1/products").then(json => {
+      loadProducts(json);
+      console.log("Products loaded:", json);
+      this.setState({
+        loading: false
+      });
+    });
+  }
 
   render() {
+    const { addToCart, removeFromCart, products, cart } = this.props;
     return (
       <div>
-        {loading ? (
+        {this.state.loading ? (
           <div>
             <Dimmer active>
               <Loader size="massive">Loading</Loader>
@@ -43,15 +55,15 @@ class ProductListing extends React.Component {
           </div>
         ) : (
           <Grid>
-            <Card.Group itemsPerRow={5}>
-              {data.map(product => (
+            <Card.Group itemsPerRow={4}>
+              {products.map(product => (
                 <ProductListItem
                   key={product.id}
                   product={product}
-                  addToCart={props.addToCart}
-                  removeFromCart={props.removeFromCart}
+                  addToCart={addToCart}
+                  removeFromCart={removeFromCart}
                   cartItem={
-                    props.cart.filter(cartItem => cartItem.id === product.id)[0]
+                    cart.filter(cartItem => cartItem.id === product.id)[0]
                   }
                 />
               ))}
@@ -65,12 +77,16 @@ class ProductListing extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    cart: state.cart
+    cart: state.cart,
+    products: state.products
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    loadProducts: products => {
+      dispatch({ type: "LOAD", payload: products });
+    },
     addToCart: item => {
       dispatch({ type: "ADD", payload: item });
     },

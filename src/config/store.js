@@ -1,5 +1,7 @@
 import { createStore, combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
 import cartReducer from "../features/cart/reducer";
+import productsReducer from "../features/product-listing/reducer";
 
 function saveToLocalStorage(state) {
   try {
@@ -21,7 +23,9 @@ function loadFromLocalStorage() {
 }
 
 const rootReducer = combineReducers({
-  cart: cartReducer
+  cart: cartReducer,
+  products: productsReducer,
+  form: formReducer
 });
 
 const persistedState = loadFromLocalStorage();

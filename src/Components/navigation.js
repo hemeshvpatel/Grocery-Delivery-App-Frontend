@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Menu, Button, Icon, Flag } from "semantic-ui-react";
+import { connect } from "react-redux";
 
 import { Link, withRouter } from "react-router-dom";
 
@@ -9,7 +10,8 @@ class Navigation extends Component {
   };
 
   handleLogOutButton = event => {
-    localStorage.removeItem("jwt");
+    localStorage.clear();
+    localStorage.removeItem("state");
     this.props.history.push("/");
   };
 
@@ -18,6 +20,9 @@ class Navigation extends Component {
       <Container>
         <Menu>
           <Menu.Item>
+            <Flag name="us" />
+          </Menu.Item>
+          <Menu.Item>
             <Link to="/">
               <Button color="orange">Home</Button>
             </Link>
@@ -25,7 +30,13 @@ class Navigation extends Component {
           <Menu.Item>
             <Link to="./cart">
               <Button animated="vertical" position="right" color="orange">
-                <Button.Content visible>My Cart</Button.Content>
+                <Button.Content visible>
+                  My Cart (
+                  {this.props.cart.reduce((acc, item) => {
+                    return acc + item.quantity;
+                  }, 0)}
+                  )
+                </Button.Content>
                 <Button.Content hidden>
                   <Icon name="shop" />
                 </Button.Content>
@@ -33,7 +44,9 @@ class Navigation extends Component {
             </Link>
           </Menu.Item>
           <Menu.Item>
-            <Flag name="us" />
+            <Link to="/checkout">
+              <Button color="orange">Check Out</Button>
+            </Link>
           </Menu.Item>
 
           {/* {localStorage.getItem("jwt") ? (
@@ -87,4 +100,10 @@ class Navigation extends Component {
   }
 }
 
-export default withRouter(Navigation);
+function mapStateToProps(state) {
+  return {
+    cart: state.cart
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(Navigation));
