@@ -102,7 +102,7 @@ class ProductListing extends React.Component {
               </Menu>
             </Grid.Column>
             <Grid.Column width={13}>
-              <Card.Group itemsPerRow={5}>
+              <Card.Group>
                 {products.map(product => (
                   <ProductListItem
                     key={product.id}

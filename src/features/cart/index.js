@@ -1,20 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import {
-  Container,
-  Header,
-  Table,
-  Image,
-  Icon,
-  Button
-} from "semantic-ui-react";
+import { Container, Table, Image, Icon, Button } from "semantic-ui-react";
 
 function sort(items) {
-  return items.sort((a, b) => a.id < b.id);
+  return items.sort((a, b) => a.id - b.id);
 }
 
 function Cart(props) {
+  console.log("Cart Props: ", props.cart);
   return (
     <Container>
       <Table>
@@ -22,7 +16,7 @@ function Cart(props) {
           <Table.Row>
             <Table.HeaderCell>Item Image</Table.HeaderCell>
             <Table.HeaderCell>Item Name</Table.HeaderCell>
-            <Table.HeaderCell>ID</Table.HeaderCell>
+            {/* <Table.HeaderCell>ID</Table.HeaderCell> */}
             <Table.HeaderCell>Price</Table.HeaderCell>
             <Table.HeaderCell>Quantity</Table.HeaderCell>
             <Table.HeaderCell>Total</Table.HeaderCell>
@@ -32,35 +26,36 @@ function Cart(props) {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {sort(props.cart).map(item => (
-            <Table.Row>
-              <Table.Cell>
-                <Image src={item.image_url} size="tiny" />
-              </Table.Cell>
-              <Table.Cell>{item.name}</Table.Cell>
-              <Table.Cell>{item.id}</Table.Cell>
-              <Table.Cell>${item.price}</Table.Cell>
-              <Table.Cell>x {item.quantity}</Table.Cell>
-              <Table.Cell>
-                ${parseFloat(item.price) * parseFloat(item.quantity)}
-              </Table.Cell>
-              <Table.Cell>
-                <Button onClick={() => props.addToCart(item)}>
-                  <Icon name="add" color="green" />
-                </Button>
-              </Table.Cell>
-              <Table.Cell>
-                <Button onClick={() => props.removeFromCart(item)}>
-                  <Icon name="minus" color="red" />
-                </Button>
-              </Table.Cell>
-              <Table.Cell>
-                <Button onClick={() => props.removeAllFromCart(item)}>
-                  <Icon name="remove" /> Remove All
-                </Button>
-              </Table.Cell>
-            </Table.Row>
-          ))}
+          {sort(props.cart).map(item => {
+            const total = item.quantity * item.price;
+            return (
+              <Table.Row>
+                <Table.Cell>
+                  <Image src={item.image_url} size="tiny" />
+                </Table.Cell>
+                <Table.Cell>{item.name}</Table.Cell>
+                {/* <Table.Cell>{item.id}</Table.Cell> */}
+                <Table.Cell>${item.price}</Table.Cell>
+                <Table.Cell>x {item.quantity}</Table.Cell>
+                <Table.Cell>${parseFloat(total).toFixed(2)}</Table.Cell>
+                <Table.Cell>
+                  <Button onClick={() => props.addToCart(item)}>
+                    <Icon name="add" color="green" />
+                  </Button>
+                </Table.Cell>
+                <Table.Cell>
+                  <Button onClick={() => props.removeFromCart(item)}>
+                    <Icon name="minus" color="red" />
+                  </Button>
+                </Table.Cell>
+                <Table.Cell>
+                  <Button onClick={() => props.removeAllFromCart(item)}>
+                    <Icon name="remove" /> Remove All
+                  </Button>
+                </Table.Cell>
+              </Table.Row>
+            );
+          })}
         </Table.Body>
       </Table>
     </Container>
