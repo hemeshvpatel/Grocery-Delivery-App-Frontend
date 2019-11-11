@@ -1,14 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { Container, Table, Image, Icon, Button } from "semantic-ui-react";
+import {
+  Container,
+  Table,
+  Image,
+  Icon,
+  Button,
+  Segment
+} from "semantic-ui-react";
 
 function sort(items) {
   return items.sort((a, b) => a.id - b.id);
 }
 
+function cartTotal(props) {
+  let sum = 0;
+  props.cart.forEach(item => {
+    const itemTotal = item.quantity * item.price;
+    return (sum += itemTotal);
+  });
+  return sum.toFixed(2);
+}
+
 function Cart(props) {
-  console.log("Cart Props: ", props.cart);
+  //console.log("Cart Props: ", props.cart);
   return (
     <Container>
       <Table>
@@ -29,7 +45,7 @@ function Cart(props) {
           {sort(props.cart).map(item => {
             const total = item.quantity * item.price;
             return (
-              <Table.Row>
+              <Table.Row key={item.id}>
                 <Table.Cell>
                   <Image src={item.image_url} size="tiny" />
                 </Table.Cell>
@@ -58,6 +74,10 @@ function Cart(props) {
           })}
         </Table.Body>
       </Table>
+
+      <Segment>
+        <h2>Shopping Cart Total: ${cartTotal(props)}</h2>
+      </Segment>
     </Container>
   );
 }

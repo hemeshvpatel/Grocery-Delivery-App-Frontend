@@ -130,7 +130,7 @@ class ProductListing extends React.Component {
                     />
                     <Menu.Item
                       name="Fruits and Vegetables"
-                      active={activeItem === "Fruits and Vegetables"}
+                      active={activeItem === "Fruits & Vegetables"}
                       onClick={this.handleItemClickFruitsAndVegetables}
                     />
                     <Menu.Item
@@ -140,12 +140,12 @@ class ProductListing extends React.Component {
                     />
                     <Menu.Item
                       name="Bakery and Bread"
-                      active={activeItem === "Bakery and Bread"}
+                      active={activeItem === "Bakery & Bread"}
                       onClick={this.handleItemClickBakeryAndBread}
                     />
                     <Menu.Item
                       name="Dairy and Eggs"
-                      active={activeItem === "Dairy and Eggs"}
+                      active={activeItem === "Dairy & Eggs"}
                       onClick={this.handleItemClickDairyAndEggs}
                     />
                     <Menu.Item

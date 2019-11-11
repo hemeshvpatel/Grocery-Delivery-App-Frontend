@@ -5,7 +5,7 @@ import Cart from "../cart";
 import CheckoutForm from "./form";
 import fetchApi from "../../modules/fetch-api";
 
-import { Container } from "semantic-ui-react";
+import { Container, Grid } from "semantic-ui-react";
 
 function submitOrder(values, cart) {
   const { email, name } = values.order;
@@ -34,8 +34,14 @@ function Checkout(props) {
   const { cart } = props;
   return (
     <Container>
-      <Cart />
-      <CheckoutForm onSubmit={values => submitOrder(values, cart)} />
+      <Grid>
+        <Grid.Column width={4}>
+          <CheckoutForm onSubmit={values => submitOrder(values, cart)} />
+        </Grid.Column>
+        <Grid.Column width={12}>
+          <Cart />
+        </Grid.Column>
+      </Grid>
     </Container>
   );
 }

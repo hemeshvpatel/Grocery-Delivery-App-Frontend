@@ -17,12 +17,7 @@ class Register extends Component {
       last_name: "",
       username: "",
       password: "",
-      email: "",
-      street: "",
-      city: "",
-      state: "",
-      zipcode: "",
-      user: ""
+      email: ""
     };
   }
 
@@ -35,27 +30,27 @@ class Register extends Component {
 
   handleSignUpUserProfile = event => {
     event.preventDefault();
-    //console.log("sign up form is being submitted");
-    fetch(
-      "https://cors-anywhere.herokuapp.com/https://grocery-delivery-backend.herokuapp.com/api/v1/users",
-      {
-        // fetch("http://localhost:3000/api/v1/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify({
-          user: {
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
-            username: this.state.username,
-            password: this.state.password,
-            email: this.state.email
-          }
-        })
-      }
-    )
+    this.fetchRegister();
+    this.props.history.push("/");
+  };
+
+  fetchRegister() {
+    fetch("http://localhost:3000/api/v1/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        user: {
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
+          username: this.state.username,
+          password: this.state.password,
+          email: this.state.email
+        }
+      })
+    })
       .then(resp => resp.json())
       .then(response => {
         console.log("Sign Up Response from fetch: ", response);
@@ -65,9 +60,10 @@ class Register extends Component {
           this.setState({ user: response.user });
           //store jwt token in local storage
           localStorage.setItem("jwt", response.jwt);
+          localStorage.setItem("user", JSON.stringify(response.user));
         }
       });
-  };
+  }
 
   render() {
     console.log("Current SignUp State: ", this.state);
@@ -125,7 +121,7 @@ class Register extends Component {
                 name="password"
                 onChange={this.handleChange}
               />
-              <Form.Input
+              {/* <Form.Input
                 fluid
                 icon="home"
                 iconPosition="left"
@@ -211,7 +207,7 @@ class Register extends Component {
                 type="number"
                 name="zipcode"
                 onChange={this.handleChange}
-              />
+              /> */}
               <Button
                 color="green"
                 fluid
