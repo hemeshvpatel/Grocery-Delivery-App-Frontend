@@ -14,11 +14,11 @@ class ProductListing extends React.Component {
 
   componentDidMount() {
     const { loadProducts } = this.props;
-    // fetchApi("get", "http://localhost:3000/api/v1/products").then(json => {
-    fetchApi(
-      "get",
-      "https://cors-anywhere.herokuapp.com/https://grocery-delivery-backend.herokuapp.com/api/v1/products"
-    ).then(json => {
+    fetchApi("get", "http://localhost:3000/api/v1/products").then(json => {
+      // fetchApi(
+      //   "get",
+      //   "https://grocery-delivery-backend.herokuapp.com/api/v1/products"
+      // ).then(json => {
       loadProducts(json);
       //console.log("Products loaded:", json);
       this.setState({
@@ -83,7 +83,7 @@ class ProductListing extends React.Component {
       <div>
         {this.state.loading ? (
           <div>
-            <Dimmer active>
+            <Dimmer active inverted>
               <Loader size="massive">Loading</Loader>
             </Dimmer>
           </div>
@@ -92,7 +92,7 @@ class ProductListing extends React.Component {
             <Grid.Column width={3}>
               <Menu vertical>
                 <Menu.Item>
-                  <Input placeholder="Search..." />
+                  <Input icon="search" placeholder="Search..." />
                 </Menu.Item>
                 <Menu.Item>
                   <Menu.Header>Products</Menu.Header>

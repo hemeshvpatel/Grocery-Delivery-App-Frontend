@@ -43,28 +43,15 @@ class Navigation extends Component {
               </Button>
             </Link>
           </Menu.Item>
-          <Menu.Item>
-            <Link to="/checkout">
-              <Button color="orange">Check Out</Button>
-            </Link>
-          </Menu.Item>
 
-          {/* {localStorage.getItem("jwt") ? (
-            <Menu.Item position="right">
-              <Link to="/cart">
-                <Button
-                  animated
-                  color="orange"
-                  onClick={this.handleMyCartButton}
-                >
-                  <Button.Content visible>My Cart</Button.Content>
-                  <Button.Content hidden>
-                    <Icon name="shopping cart" />
-                  </Button.Content>
-                </Button>
+          {localStorage.getItem("jwt") ? (
+            <Menu.Item>
+              <Link to="/checkout">
+                <Button color="orange">Check Out</Button>
               </Link>
             </Menu.Item>
-          ) : null} */}
+          ) : null}
+
           {localStorage.getItem("jwt") ? (
             <Menu.Item position="right">
               <Button

@@ -1,21 +1,54 @@
 import React from "react";
 import Cart from "../features/cart";
 
-import { Container, Header, Icon } from "semantic-ui-react";
+import { Container, Header, Icon, Message } from "semantic-ui-react";
 
-export default function CartPage(props) {
-  return (
-    <Container>
-      <br />
-      <Header as="h2" icon textAlign="center">
-        <Icon name="cart" />
-        My Cart
-        <Header.Subheader>
-          View your shopping cart and add/remove items
-        </Header.Subheader>
-      </Header>
-      <br />
-      <Cart />
-    </Container>
-  );
+class CartPage extends React.Component {
+  state = { visible: true };
+
+  componentDidMount() {
+    localStorage.getItem("jwt")
+      ? this.setState({
+          visible: false
+        })
+      : this.setState({ visible: true });
+  }
+
+  handleDismiss = () => {
+    this.setState({ visible: false });
+
+    // setTimeout(() => {
+    //   this.setState({ visible: true });
+    // }, 2000);
+  };
+
+  render() {
+    if (this.state.visible) {
+      return (
+        <Message
+          onDismiss={this.handleDismiss}
+          header="Welcome to your shopping cart!"
+          content="A reminder to log in or register to check out and complete your order :)"
+        />
+      );
+    }
+
+    return (
+      <Container>
+        <br />
+
+        <Header as="h2" icon textAlign="center">
+          <Icon name="cart" />
+          My Cart
+          <Header.Subheader>
+            View your shopping cart and add/remove items
+          </Header.Subheader>
+        </Header>
+        <br />
+        <Cart />
+      </Container>
+    );
+  }
 }
+
+export default CartPage;
