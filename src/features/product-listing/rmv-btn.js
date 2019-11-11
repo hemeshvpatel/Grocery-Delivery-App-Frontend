@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Image, Card, Icon, Button } from "semantic-ui-react";
+import { Icon, Button } from "semantic-ui-react";
 
 export default function RmvButton(props) {
   return (

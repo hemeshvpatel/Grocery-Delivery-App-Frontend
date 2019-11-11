@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
+// import ReactDOM from "react-dom";
 
 import ProductListItem from "./product-list-item";
 import { Grid, Card, Dimmer, Loader, Menu, Input } from "semantic-ui-react";
@@ -17,7 +17,7 @@ class ProductListing extends React.Component {
     // fetchApi("get", "http://localhost:3000/api/v1/products").then(json => {
     fetchApi(
       "get",
-      "https://grocery-delivery-backend.herokuapp.com/api/v1/products"
+      "https://bypasscors.herokuapp.com/https://grocery-delivery-backend.herokuapp.com/api/v1/products"
     ).then(json => {
       loadProducts(json);
       //console.log("Products loaded:", json);

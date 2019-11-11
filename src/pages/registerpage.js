@@ -36,23 +36,26 @@ class Register extends Component {
   handleSignUpUserProfile = event => {
     event.preventDefault();
     //console.log("sign up form is being submitted");
-    fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/users", {
-      // fetch("http://localhost:3000/api/v1/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        user: {
-          first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          username: this.state.username,
-          password: this.state.password,
-          email: this.state.email
-        }
-      })
-    })
+    fetch(
+      "https://bypasscors.herokuapp.com/https://grocery-delivery-backend.herokuapp.com/api/v1/users",
+      {
+        // fetch("http://localhost:3000/api/v1/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          user: {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            username: this.state.username,
+            password: this.state.password,
+            email: this.state.email
+          }
+        })
+      }
+    )
       .then(resp => resp.json())
       .then(response => {
         console.log("Sign Up Response from fetch: ", response);

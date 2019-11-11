@@ -2,7 +2,7 @@ import React from "react";
 
 import fetchApi from "../../modules/fetch-api";
 
-import { Container, Dimmer, Loader, Icon } from "semantic-ui-react";
+import { Container, Dimmer, Loader } from "semantic-ui-react";
 
 class Order extends React.Component {
   state = {

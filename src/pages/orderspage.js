@@ -1,7 +1,7 @@
 import React from "react";
 import Order from "../features/order";
 
-import { Container, Header, Icon } from "semantic-ui-react";
+import { Container, Header } from "semantic-ui-react";
 
 export default function OrdersPage(props) {
   return (

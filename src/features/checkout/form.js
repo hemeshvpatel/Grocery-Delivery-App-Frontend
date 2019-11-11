@@ -2,7 +2,7 @@ import React from "react";
 
 import { Field, reduxForm } from "redux-form";
 
-import { Container, Grid, Card, Dimmer, Loader } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 
 function CheckoutForm(props) {
   const { handleSubmit } = props;
