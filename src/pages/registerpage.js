@@ -72,6 +72,7 @@ class Register extends Component {
     return (
       <Grid verticalAlign="middle" centered columns={2}>
         <Grid.Column>
+          <br></br>
           <Header as="h2" textAlign="center">
             Register to start shopping!
           </Header>

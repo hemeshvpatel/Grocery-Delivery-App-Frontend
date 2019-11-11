@@ -65,6 +65,7 @@ class Login extends Component {
     return !localStorage.getItem("jwt") ? (
       <Grid verticalAlign="middle" columns={2} color="grey" centered>
         <Grid.Column>
+          <br></br>
           <Header as="h2" textAlign="center">
             Log in or Register to start shopping!
           </Header>

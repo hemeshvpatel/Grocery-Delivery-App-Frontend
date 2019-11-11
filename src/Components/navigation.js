@@ -12,7 +12,7 @@ class Navigation extends Component {
   handleLogOutButton = event => {
     localStorage.clear();
     localStorage.removeItem("state");
-    this.props.history.push("/");
+    this.props.history.push("/login");
   };
 
   render() {
