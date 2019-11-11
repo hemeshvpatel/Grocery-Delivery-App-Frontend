@@ -41,7 +41,9 @@ function Cart(props) {
               <Table.Cell>{item.id}</Table.Cell>
               <Table.Cell>${item.price}</Table.Cell>
               <Table.Cell>x {item.quantity}</Table.Cell>
-              <Table.Cell>${item.price * item.quantity}</Table.Cell>
+              <Table.Cell>
+                ${parseFloat(item.price) * parseFloat(item.quantity)}
+              </Table.Cell>
               <Table.Cell>
                 <Button onClick={() => props.addToCart(item)}>
                   <Icon name="add" color="green" />

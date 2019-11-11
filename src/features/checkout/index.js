@@ -1,10 +1,43 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { Container, Grid, Card, Dimmer, Loader } from "semantic-ui-react";
+import Cart from "../cart";
+import CheckoutForm from "./form";
+import fetchApi from "../../modules/fetch-api";
+
+import { Container } from "semantic-ui-react";
+
+function submitOrder(values, cart) {
+  const { email, name } = values.order;
+
+  fetchApi("post", "http://localhost:3000/api/v1/orders", {
+    order: {
+      name,
+      email,
+      order_items_attributes: cart.map(item => ({
+        product_id: item.id,
+        quantity: item.quantity
+      }))
+    }
+  }).then(json => {
+    console.log("JSON response from fetch post api orders", json);
+    if (json.errors) {
+      alert("something went wrong!");
+      return;
+    }
+    localStorage.removeItem("state");
+    document.location.href = `/orders/${json.id}`;
+  });
+}
 
 function Checkout(props) {
-  return <Container>Checkout stuff</Container>;
+  const { cart } = props;
+  return (
+    <Container>
+      <Cart />
+      <CheckoutForm onSubmit={values => submitOrder(values, cart)} />
+    </Container>
+  );
 }
 
 function mapStateToProps(state) {
@@ -13,7 +46,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Checkout);
+export default connect(mapStateToProps)(Checkout);
