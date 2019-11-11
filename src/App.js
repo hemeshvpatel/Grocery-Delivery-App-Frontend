@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import { NavLink } from "react-router-dom";
 
 import Router from "./Router";
-import Navigation from "./components/navigation";
+import Navigation from "./components/Navigation.js";
 
 import { Container } from "semantic-ui-react";
 
