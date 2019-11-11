@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import ProductListItem from "./product-list-item";
-import { Grid, Card, Dimmer, Loader } from "semantic-ui-react";
+import { Grid, Card, Dimmer, Loader, Menu, Input } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 import fetchApi from "../../modules/fetch-api";
@@ -43,8 +43,11 @@ class ProductListing extends React.Component {
     });
   }
 
+  handleItemClick = name => this.setState({ activeItem: name });
+
   render() {
     const { addToCart, removeFromCart, products, cart } = this.props;
+    const { activeItem } = this.state;
     return (
       <div>
         {this.state.loading ? (
@@ -55,19 +58,64 @@ class ProductListing extends React.Component {
           </div>
         ) : (
           <Grid>
-            <Card.Group itemsPerRow={4}>
-              {products.map(product => (
-                <ProductListItem
-                  key={product.id}
-                  product={product}
-                  addToCart={addToCart}
-                  removeFromCart={removeFromCart}
-                  cartItem={
-                    cart.filter(cartItem => cartItem.id === product.id)[0]
-                  }
-                />
-              ))}
-            </Card.Group>
+            <Grid.Column width={3}>
+              <Menu vertical>
+                <Menu.Item>
+                  <Input placeholder="Search..." />
+                </Menu.Item>
+                <Menu.Item>
+                  <Menu.Header>Products</Menu.Header>
+
+                  <Menu.Menu>
+                    <Menu.Item
+                      name="Fruits & Vegetables"
+                      active={activeItem === "enterprise"}
+                      onClick={this.handleItemClick}
+                    />
+                    <Menu.Item
+                      name="Beverages"
+                      active={activeItem === "consumer"}
+                      onClick={this.handleItemClick}
+                    />
+                    <Menu.Item
+                      name="Bakery & Bread"
+                      active={activeItem === "enterprise"}
+                      onClick={this.handleItemClick}
+                    />
+                    <Menu.Item
+                      name="Dairy & Eggs"
+                      active={activeItem === "enterprise"}
+                      onClick={this.handleItemClick}
+                    />
+                    <Menu.Item
+                      name="Frozen Foods"
+                      active={activeItem === "enterprise"}
+                      onClick={this.handleItemClick}
+                    />
+                    <Menu.Item
+                      name="Pantry"
+                      active={activeItem === "enterprise"}
+                      onClick={this.handleItemClick}
+                    />
+                  </Menu.Menu>
+                </Menu.Item>
+              </Menu>
+            </Grid.Column>
+            <Grid.Column width={13}>
+              <Card.Group itemsPerRow={5}>
+                {products.map(product => (
+                  <ProductListItem
+                    key={product.id}
+                    product={product}
+                    addToCart={addToCart}
+                    removeFromCart={removeFromCart}
+                    cartItem={
+                      cart.filter(cartItem => cartItem.id === product.id)[0]
+                    }
+                  />
+                ))}
+              </Card.Group>
+            </Grid.Column>
           </Grid>
         )}
       </div>

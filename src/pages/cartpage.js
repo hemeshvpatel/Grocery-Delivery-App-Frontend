@@ -1,15 +1,21 @@
 import React from "react";
 import Cart from "../features/cart";
 
-import { Container } from "semantic-ui-react";
+import { Container, Header, Icon } from "semantic-ui-react";
 
 export default function CartPage(props) {
   return (
     <Container>
-      <div>
-        <h2>My Cart</h2>
-        <Cart />
-      </div>
+      <br />
+      <Header as="h2" icon textAlign="center">
+        <Icon name="cart" />
+        My Cart
+        <Header.Subheader>
+          View your shopping cart and add/remove items
+        </Header.Subheader>
+      </Header>
+      <br />
+      <Cart />
     </Container>
   );
 }
