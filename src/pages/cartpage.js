@@ -28,7 +28,7 @@ class CartPage extends React.Component {
         <Message
           onDismiss={this.handleDismiss}
           header="Welcome to your shopping cart!"
-          content="A reminder to log in or register to check out and complete your order :)"
+          content="Please log in or register to proceed to checkout"
         />
       );
     }

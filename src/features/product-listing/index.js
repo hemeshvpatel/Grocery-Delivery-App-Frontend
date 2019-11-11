@@ -9,7 +9,8 @@ import fetchApi from "../../modules/fetch-api";
 
 class ProductListing extends React.Component {
   state = {
-    loading: true
+    loading: true,
+    search: ""
   };
 
   componentDidMount() {
@@ -24,10 +25,29 @@ class ProductListing extends React.Component {
       this.setState({
         loading: false,
         products: this.props.products,
-        filteredProducts: []
+        filteredProducts: this.props.products
       });
     });
   }
+
+  //Collect info as it is typed and update state
+  handleChange = input => {
+    this.setState({
+      [input.target.name]: input.target.value
+    });
+    const lowercasedSearchInput = this.state.search.toLowerCase();
+    //console.log("Search input: ", lowercasedSearchInput);
+
+    //search filtered products in state
+    const searchResults = this.state.products.filter(product => {
+      let lowercasedProducts = product.name.toLowerCase();
+      return lowercasedProducts.includes(lowercasedSearchInput);
+    });
+
+    this.setState({
+      filteredProducts: searchResults
+    });
+  };
 
   handleItemClickAll = name => {
     this.setState({ activeItem: name, filteredProducts: this.props.products });
@@ -92,7 +112,12 @@ class ProductListing extends React.Component {
             <Grid.Column width={3}>
               <Menu vertical>
                 <Menu.Item>
-                  <Input icon="search" placeholder="Search..." />
+                  <Input
+                    icon="search"
+                    name="search"
+                    placeholder="Search..."
+                    onChange={this.handleChange}
+                  />
                 </Menu.Item>
                 <Menu.Item>
                   <Menu.Header>Products</Menu.Header>
@@ -138,7 +163,7 @@ class ProductListing extends React.Component {
               </Menu>
             </Grid.Column>
             <Grid.Column width={13}>
-              <Card.Group>
+              <Card.Group itemsPerRow={4}>
                 {this.state.filteredProducts.length === 0
                   ? products.map(product => (
                       <ProductListItem
