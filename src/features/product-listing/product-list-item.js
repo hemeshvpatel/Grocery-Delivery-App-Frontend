@@ -3,13 +3,10 @@ import React from "react";
 import AddBtn from "./add-btn";
 import RmvBtn from "./rmv-btn";
 
-import { Image, Card, Icon, Button } from "semantic-ui-react";
+import { Image, Card } from "semantic-ui-react";
 
 export default function ProductListItem(props) {
   // console.log("product-list-item", props);
-  // const thisItemInCart = props.cart.filter(
-  //   item => item.id === props.product.id
-  // )[0];
 
   return (
     <Card key={props.product.id} color="green">
