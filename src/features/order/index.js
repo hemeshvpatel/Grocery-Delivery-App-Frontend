@@ -2,7 +2,7 @@ import React from "react";
 
 import fetchApi from "../../modules/fetch-api";
 
-import { Dimmer, Loader } from "semantic-ui-react";
+import { Container, Dimmer, Loader, Icon } from "semantic-ui-react";
 
 class Order extends React.Component {
   state = {
@@ -25,11 +25,10 @@ class Order extends React.Component {
   renderOrder() {
     const { name, email, order_items } = this.state.order;
     return (
-      <div>
-        <h3>Order Info</h3>
-        <div>Name: {name} </div>
-        <div>Email: {email} </div>
-        <h4>Items</h4>
+      <Container>
+        <h2>Name: {name} </h2>
+        <h2>Email: {email} </h2>
+        <h2>Items</h2>
         <ul>
           {order_items &&
             order_items.map(item => {
@@ -44,7 +43,12 @@ class Order extends React.Component {
               );
             })}
         </ul>
-      </div>
+        <h2>Delivery is on it's way and will arrive at 6:45pm</h2>
+        <h3>
+          Driver will be delivering your order in a Honda Accord (license plate
+          # 456-7880)
+        </h3>
+      </Container>
     );
   }
 
