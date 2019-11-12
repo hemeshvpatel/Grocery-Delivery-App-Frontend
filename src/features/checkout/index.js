@@ -45,7 +45,7 @@ function submitOrder(values, cart) {
       return;
     }
     localStorage.removeItem("state");
-    //document.location.href = `/orders/${json.id}`;
+    document.location.href = `/orders/${json.id}`;
   });
 }
 
