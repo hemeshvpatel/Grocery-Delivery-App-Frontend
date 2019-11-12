@@ -5,7 +5,8 @@ import {
   Grid,
   Header,
   Segment,
-  Divider
+  Divider,
+  Message
 } from "semantic-ui-react";
 import { withRouter, Redirect } from "react-router-dom";
 
@@ -30,7 +31,6 @@ class Login extends Component {
   handleLogin = event => {
     event.preventDefault();
     this.fetchLogin();
-    this.props.history.push("/");
   };
 
   fetchLogin() {
@@ -52,9 +52,18 @@ class Login extends Component {
     })
       .then(response => response.json())
       .then(response => {
+        console.log(response.user);
         //store jwt token in local storage
-        localStorage.setItem("jwt", response.jwt);
-        localStorage.setItem("user", JSON.stringify(response.user));
+        if (response.jwt === undefined) {
+          alert("Invalid username or password");
+        } else {
+          localStorage.setItem("jwt", response.jwt);
+          localStorage.setItem("user", JSON.stringify(response.user));
+          this.props.history.push("/");
+        }
+      })
+      .catch(err => {
+        console.error("Error: ", err);
       });
   }
 
