@@ -5,8 +5,7 @@ import {
   Grid,
   Header,
   Segment,
-  Divider,
-  Message
+  Divider
 } from "semantic-ui-react";
 import { withRouter, Redirect } from "react-router-dom";
 
