@@ -1,9 +1,10 @@
 import React from "react";
 import Checkout from "../features/checkout";
+import { withRouter } from "react-router-dom";
 
 import { Container, Header, Icon } from "semantic-ui-react";
 
-export default function CheckoutPage(props) {
+function CheckoutPage(props) {
   return (
     <Container>
       <br />
@@ -19,3 +20,5 @@ export default function CheckoutPage(props) {
     </Container>
   );
 }
+
+export default withRouter(CheckoutPage);

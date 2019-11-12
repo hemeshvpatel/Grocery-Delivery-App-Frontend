@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
 
 import {
   Container,
@@ -75,9 +76,19 @@ function Cart(props) {
         </Table.Body>
       </Table>
 
-      <Segment>
-        <h2>Shopping Cart Total: ${cartTotal(props)}</h2>
-      </Segment>
+      <Segment.Group horizontal>
+        <Segment textAlign="center">
+          <h3>Shopping Cart Total: ${cartTotal(props)}</h3>
+        </Segment>
+        {props.location.pathname !== "/checkout" &&
+        localStorage.getItem("jwt") ? (
+          <Segment textAlign="center">
+            <Link to="/checkout">
+              <Button color="orange">Proceed to Checkout</Button>
+            </Link>
+          </Segment>
+        ) : null}
+      </Segment.Group>
     </Container>
   );
 }
@@ -102,7 +113,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Cart);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Cart)
+);
