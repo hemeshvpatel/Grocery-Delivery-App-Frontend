@@ -80,35 +80,6 @@ class Login extends Component {
           <Header as="h2" textAlign="center">
             Log in or Register to start shopping!
           </Header>
-          {/* <Segment>
-            <Form size="large" onSubmit={event => this.handleLogin(event)}>
-              <Form.Input
-                fluid
-                icon="user"
-                iconPosition="left"
-                placeholder="Username"
-                name="username"
-                onChange={this.handleChange}
-              />
-              <Form.Input
-                fluid
-                icon="lock"
-                iconPosition="left"
-                placeholder="Password"
-                type="password"
-                name="password"
-                onChange={this.handleChange}
-              />
-              <Button
-                color="green"
-                fluid
-                size="large"
-                // onClick={() => console.log("Clicked")}
-              >
-                Login
-              </Button>
-            </Form>
-          </Segment> */}
           <Segment placeholder>
             <Grid stackable columns={2} relaxed="very">
               <Grid.Column>

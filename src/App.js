@@ -6,24 +6,12 @@ import Navigation from "./components/Navigation";
 
 import { Container } from "semantic-ui-react";
 
-// const Navigation2 = props => (
-//   <Menu>
-//     <Menu.Item>
-//       <NavLink to="/">Home</NavLink>
-//     </Menu.Item>
-//     <Menu.Item>
-//       <NavLink to="/cart">Cart</NavLink>
-//     </Menu.Item>
-//   </Menu>
-// );
-
 class App extends Component {
   render() {
     return (
       <Container>
         <div>
           <Navigation />
-          {/* <Navigation2 /> */}
           <Router />
         </div>
       </Container>

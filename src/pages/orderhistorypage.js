@@ -1,16 +1,20 @@
 import React from "react";
 
-import Profile from "../features/order-history";
+import OrderHistory from "../features/order-history";
 
-import { Container, Header } from "semantic-ui-react";
+import { Container, Header, Icon } from "semantic-ui-react";
 
 export default function Homepage(props) {
   return (
     <Container>
-      <br></br>
-      <Header textAlign="center">Past Order History</Header>
-      <br></br>
-      <Profile />
+      <br />
+      <Header as="h2" icon textAlign="center">
+        <Icon name="history" />
+        Order History
+        <Header.Subheader>View all delivery orders</Header.Subheader>
+      </Header>
+      <br />
+      <OrderHistory />
     </Container>
   );
 }

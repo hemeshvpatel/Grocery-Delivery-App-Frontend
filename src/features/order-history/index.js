@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container, Dimmer, Loader, Grid, Card } from "semantic-ui-react";
+import { Dimmer, Loader, Grid, Card } from "semantic-ui-react";
 
 import OrderListCard from "./order-list-card";
 
@@ -8,12 +8,17 @@ import fetchApi from "../../modules/fetch-api";
 
 class Profile extends React.Component {
   state = { allOrders: [], loading: true };
-
+  currentUser = JSON.parse(localStorage.getItem("user"));
   componentDidMount() {
     fetchApi(
       "get",
       `https://grocery-delivery-backend.herokuapp.com/api/v1/orders`
     ).then(json => {
+      console.log("JSON+++++", json);
+      const data = json;
+      data.filter(order => {
+        return order.id === this.currentUser.id;
+      });
       this.setState({
         allOrders: json,
         loading: false
@@ -32,15 +37,13 @@ class Profile extends React.Component {
             </Dimmer>
           </div>
         ) : (
-          <Container>
-            <Grid.Column width={13}>
-              <Card.Group itemsPerRow={4}>
-                {this.state.allOrders.map(order => (
-                  <OrderListCard key={order.id} order={order} />
-                ))}
-              </Card.Group>
-            </Grid.Column>
-          </Container>
+          <Grid verticalAlign="middle" centered>
+            <Card.Group centered itemsPerRow={3}>
+              {this.state.allOrders.map(order => (
+                <OrderListCard key={order.id} order={order} />
+              ))}
+            </Card.Group>
+          </Grid>
         )}
       </div>
     );
