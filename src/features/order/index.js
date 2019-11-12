@@ -60,7 +60,7 @@ class Order extends React.Component {
         <p>State: {state} </p>
         <p>Zip Code: {zipcode} </p>
         <p>Delivery Time: {deliverytime}</p>
-        <h2>Delivery is on it's way and will arrive by {deliverytime}</h2>
+        <h2>Delivery is on it's way and will arrive between {deliverytime}</h2>
         <h2>
           Driver will be delivering your order in a Honda Accord (license plate
           # 456-7880)
