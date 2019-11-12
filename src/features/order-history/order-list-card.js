@@ -13,7 +13,9 @@ function OrderListCard(props) {
         <Card.Meta>
           Ordered on {props.order.created_at.substring(0, 10)}
         </Card.Meta>
-        <Card.Description>Order Total: $ </Card.Description>
+        <Card.Description>
+          Order Total: ${props.order.order_total}{" "}
+        </Card.Description>
         <br></br>
         <Card.Description>
           <u>Items Ordered:</u>

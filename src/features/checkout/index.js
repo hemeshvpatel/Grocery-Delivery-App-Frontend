@@ -14,10 +14,13 @@ function submitOrder(values, cart) {
   let name = user.first_name + " " + user.last_name;
   let email = user.email;
   let user_id = user.id;
+  let order_total = localStorage.getItem("cartTotal");
+  console.log("Order Total: ", order_total);
 
   fetchApi(
     "post",
     "https://grocery-delivery-backend.herokuapp.com/api/v1/orders",
+    // "http://localhost:3000/api/v1/orders",
     {
       order: {
         name,
@@ -28,6 +31,7 @@ function submitOrder(values, cart) {
         zipcode,
         deliverytime,
         user_id,
+        order_total,
         order_items_attributes: cart.map(item => ({
           product_id: item.id,
           quantity: item.quantity
@@ -41,7 +45,7 @@ function submitOrder(values, cart) {
       return;
     }
     localStorage.removeItem("state");
-    document.location.href = `/orders/${json.id}`;
+    //document.location.href = `/orders/${json.id}`;
   });
 }
 

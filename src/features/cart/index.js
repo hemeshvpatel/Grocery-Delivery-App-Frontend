@@ -79,6 +79,7 @@ function Cart(props) {
       <Segment.Group horizontal>
         <Segment textAlign="center">
           <h3>Shopping Cart Total: ${cartTotal(props)}</h3>
+          {localStorage.setItem("cartTotal", cartTotal(props))}
         </Segment>
         {props.location.pathname !== "/checkout" &&
         localStorage.getItem("jwt") ? (
