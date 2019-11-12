@@ -16,7 +16,7 @@ function submitOrder(values, cart) {
 
   fetchApi(
     "post",
-    "http://grocery-delivery-backend.herokuapp.com/api/v1/orders",
+    "https://grocery-delivery-backend.herokuapp.com/api/v1/orders",
     {
       order: {
         name,

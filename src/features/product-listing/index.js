@@ -17,7 +17,7 @@ class ProductListing extends React.Component {
     const { loadProducts } = this.props;
     fetchApi(
       "get",
-      "http://grocery-delivery-backend.herokuapp.com/api/v1/products"
+      "https://grocery-delivery-backend.herokuapp.com/api/v1/products"
     ).then(json => {
       // fetchApi(
       //   "get",

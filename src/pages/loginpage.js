@@ -34,7 +34,7 @@ class Login extends Component {
   };
 
   fetchLogin() {
-    fetch("http://grocery-delivery-backend.herokuapp.com/api/v1/login", {
+    fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/login", {
       // fetch(
       //   "https://cors-anywhere.herokuapp.com/https://grocery-delivery-backend.herokuapp.com/api/v1/login",
       //   {

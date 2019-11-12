@@ -13,7 +13,7 @@ class Order extends React.Component {
   componentDidMount() {
     fetchApi(
       "get",
-      `http://grocery-delivery-backend.herokuapp.com/api/v1/orders/${this.props.id}`
+      `https://grocery-delivery-backend.herokuapp.com/api/v1/orders/${this.props.id}`
     ).then(json => {
       this.setState({
         order: json,

@@ -17,7 +17,7 @@ class Products extends Component {
   }
 
   fetchProducts() {
-    fetch("http://localhost:3000/api/v1/products")
+    fetch("https://localhost:3000/api/v1/products")
       // fetch("https://grocery-delivery-backend.herokuapp.com/api/v1/products")
       .then(response => response.json())
       .then(response => {
@@ -33,7 +33,7 @@ class Products extends Component {
     const user_id = this.state.userID;
     const product_id = parseInt(event.target.value);
     console.log(product_id);
-    fetch("http://localhost:3000/api/v1/cart_items", {
+    fetch("https://localhost:3000/api/v1/cart_items", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
