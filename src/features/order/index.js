@@ -23,12 +23,23 @@ class Order extends React.Component {
   }
 
   renderOrder() {
-    const { name, email, order_items } = this.state.order;
+    const {
+      name,
+      email,
+      street,
+      city,
+      state,
+      zipcode,
+      deliverytime,
+      order_items
+    } = this.state.order;
     return (
       <Container>
+        <h1>Customer Info: </h1>
         <h2>Name: {name} </h2>
         <h2>Email: {email} </h2>
-        <h2>Items</h2>
+        <br />
+        <h1>Items Ordered:</h1>
         <ul>
           {order_items &&
             order_items.map(item => {
@@ -43,11 +54,17 @@ class Order extends React.Component {
               );
             })}
         </ul>
-        <h2>Delivery is on it's way and will arrive at 6:45pm</h2>
-        <h3>
+        <h1>Delivery Info:</h1>
+        <p>Street: {street} </p>
+        <p>City: {city} </p>
+        <p>State: {state} </p>
+        <p>Zip Code: {zipcode} </p>
+        <p>Delivery Time: {deliverytime}</p>
+        <h2>Delivery is on it's way and will arrive by {deliverytime}</h2>
+        <h2>
           Driver will be delivering your order in a Honda Accord (license plate
           # 456-7880)
-        </h3>
+        </h2>
       </Container>
     );
   }
