@@ -14,21 +14,25 @@ function submitOrder(values, cart) {
   let name = user.first_name + " " + user.last_name;
   let email = user.email;
 
-  fetchApi("post", "http://localhost:3000/api/v1/orders", {
-    order: {
-      name,
-      email,
-      street,
-      city,
-      state,
-      zipcode,
-      deliverytime,
-      order_items_attributes: cart.map(item => ({
-        product_id: item.id,
-        quantity: item.quantity
-      }))
+  fetchApi(
+    "post",
+    "http://grocery-delivery-backend.herokuapp.com/api/v1/orders",
+    {
+      order: {
+        name,
+        email,
+        street,
+        city,
+        state,
+        zipcode,
+        deliverytime,
+        order_items_attributes: cart.map(item => ({
+          product_id: item.id,
+          quantity: item.quantity
+        }))
+      }
     }
-  }).then(json => {
+  ).then(json => {
     console.log("JSON response from fetch post api orders", json);
     if (json.errors) {
       alert("something went wrong!");

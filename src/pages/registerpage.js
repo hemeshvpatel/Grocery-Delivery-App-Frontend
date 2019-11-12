@@ -35,7 +35,7 @@ class Register extends Component {
   };
 
   fetchRegister() {
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch("http://grocery-delivery-backend.herokuapp.com/api/v1/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

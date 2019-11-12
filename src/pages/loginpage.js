@@ -34,7 +34,7 @@ class Login extends Component {
   };
 
   fetchLogin() {
-    fetch("http://localhost:3000/api/v1/login", {
+    fetch("http://grocery-delivery-backend.herokuapp.com/api/v1/login", {
       // fetch(
       //   "https://cors-anywhere.herokuapp.com/https://grocery-delivery-backend.herokuapp.com/api/v1/login",
       //   {
