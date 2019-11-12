@@ -14,20 +14,22 @@ class Profile extends React.Component {
       "get",
       `https://grocery-delivery-backend.herokuapp.com/api/v1/orders`
     ).then(json => {
-      console.log("JSON+++++", json);
       const data = json;
-      data.filter(order => {
-        return order.id === this.currentUser.id;
+      console.log("DATA ====", data);
+      const filtered = data.filter(order => {
+        return order.user_id === this.currentUser.id;
       });
+      console.log(filtered);
       this.setState({
         allOrders: json,
+        currentUserOrders: filtered,
         loading: false
       });
     });
   }
 
   render() {
-    console.log("ORDER HISTORY: ", this.state.allOrders);
+    console.log("ORDER HISTORY: ", this.state);
     return (
       <div>
         {this.state.loading ? (
@@ -38,8 +40,8 @@ class Profile extends React.Component {
           </div>
         ) : (
           <Grid verticalAlign="middle" centered>
-            <Card.Group centered itemsPerRow={3}>
-              {this.state.allOrders.map(order => (
+            <Card.Group centered>
+              {this.state.currentUserOrders.map(order => (
                 <OrderListCard key={order.id} order={order} />
               ))}
             </Card.Group>

@@ -3,7 +3,7 @@ import React from "react";
 import { Card } from "semantic-ui-react";
 
 function OrderListCard(props) {
-  console.log("Order List Item return: ", props);
+  //console.log("Order List Item return: ", props);
   //const date = new Date(props.order.created_at);
   //console.log(date);
   return (
@@ -18,7 +18,7 @@ function OrderListCard(props) {
         <Card.Description>
           <u>Items Ordered:</u>
           {props.order.order_items.map(item => (
-            <li>
+            <li key={item.id}>
               {item.quantity}x {item.product.name}
             </li>
           ))}
