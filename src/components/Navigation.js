@@ -44,13 +44,13 @@ class Navigation extends Component {
             </Link>
           </Menu.Item>
 
-          {/* {localStorage.getItem("jwt") ? (
+          {localStorage.getItem("jwt") ? (
             <Menu.Item>
-              <Link to="/checkout">
-                <Button color="orange">Check Out</Button>
+              <Link to="/orderhistory">
+                <Button color="orange">Order History</Button>
               </Link>
             </Menu.Item>
-          ) : null} */}
+          ) : null}
 
           {localStorage.getItem("jwt") ? (
             <Menu.Item position="right">

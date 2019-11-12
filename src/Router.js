@@ -7,6 +7,7 @@ import LoginPage from "./pages/loginpage";
 import RegisterPage from "./pages/registerpage";
 import CheckoutPage from "./pages/checkoutpage";
 import OrdersPage from "./pages/orderspage";
+import OrderHistory from "./pages/orderhistorypage";
 
 const Router = () => (
   <Switch>
@@ -15,7 +16,8 @@ const Router = () => (
     <Route exact path="/checkout" component={CheckoutPage} />
     <Route exact path="/login" component={LoginPage} />
     <Route exact path="/register" component={RegisterPage} />
-    <Route path="/orders/:id" component={OrdersPage} />
+    <Route exact path="/orderhistory" component={OrderHistory} />
+    <Route exact path="/orders/:id" component={OrdersPage} />
   </Switch>
 );
 

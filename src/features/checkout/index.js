@@ -13,6 +13,7 @@ function submitOrder(values, cart) {
   const user = JSON.parse(localStorage.getItem("user"));
   let name = user.first_name + " " + user.last_name;
   let email = user.email;
+  let user_id = user.id;
 
   fetchApi(
     "post",
@@ -26,6 +27,7 @@ function submitOrder(values, cart) {
         state,
         zipcode,
         deliverytime,
+        user_id,
         order_items_attributes: cart.map(item => ({
           product_id: item.id,
           quantity: item.quantity
