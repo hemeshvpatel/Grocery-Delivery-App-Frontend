@@ -8,12 +8,21 @@ import fetchApi from "../../modules/fetch-api";
 import { Container, Grid } from "semantic-ui-react";
 
 function submitOrder(values, cart) {
-  const { email, name } = values.order;
+  const { street, city, state, zipcode, deliverytime } = values.order;
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  let name = user.first_name + " " + user.last_name;
+  let email = user.email;
 
   fetchApi("post", "http://localhost:3000/api/v1/orders", {
     order: {
       name,
       email,
+      street,
+      city,
+      state,
+      zipcode,
+      deliverytime,
       order_items_attributes: cart.map(item => ({
         product_id: item.id,
         quantity: item.quantity

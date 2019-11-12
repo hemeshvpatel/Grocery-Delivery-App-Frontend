@@ -8,7 +8,7 @@ export default function OrdersPage(props) {
     <Container>
       <br />
       <Header as="h2" textAlign="center">
-        Order # {props.match.params.id}
+        <h1>Order # {props.match.params.id}</h1>
         <Header.Subheader>Order Details</Header.Subheader>
       </Header>
       <br />
