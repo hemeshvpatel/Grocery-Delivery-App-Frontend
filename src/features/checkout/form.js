@@ -65,12 +65,14 @@ function CheckoutForm(props) {
           ></Field>
           {/* <Field name="order[deliverytime]" component="input"  /> */}
         </Form.Field>
-
+        {/* 
         <Form.Field required>
           <Checkbox label="I agree to the Terms and Conditions" />
-        </Form.Field>
+        </Form.Field> */}
 
-        <Button type="submit">Submit order</Button>
+        <Button color="green" type="submit">
+          Place Order
+        </Button>
       </Form>
     </Container>
   );

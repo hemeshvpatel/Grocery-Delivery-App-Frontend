@@ -20,7 +20,7 @@ export default function ProductListItem(props) {
       <Card.Content extra textAlign="center">
         {" "}
         <Card.Description>
-          ${props.product.price} per {props.product.size}
+          ${parseFloat(props.product.price).toFixed(2)} per {props.product.size}
         </Card.Description>
       </Card.Content>
 

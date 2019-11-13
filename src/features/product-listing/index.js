@@ -10,7 +10,8 @@ import fetchApi from "../../modules/fetch-api";
 class ProductListing extends React.Component {
   state = {
     loading: true,
-    search: ""
+    search: "",
+    activeItem: "All"
   };
 
   componentDidMount() {
@@ -52,46 +53,46 @@ class ProductListing extends React.Component {
     });
   };
 
-  handleItemClickAll = name => {
+  handleItemClickAll = (e, { name }) => {
     this.setState({ activeItem: name, filteredProducts: this.props.products });
   };
 
-  handleItemClickFruitsAndVegetables = name => {
+  handleItemClickFruitsAndVegetables = (e, { name }) => {
     const filtered = this.state.products.filter(
       product => product.category === "Fruits & Vegetables"
     );
     this.setState({ activeItem: name, filteredProducts: filtered });
   };
 
-  handleItemClickBeverages = name => {
+  handleItemClickBeverages = (e, { name }) => {
     const filtered = this.state.products.filter(
       product => product.category === "Beverages"
     );
     this.setState({ activeItem: name, filteredProducts: filtered });
   };
 
-  handleItemClickBakeryAndBread = name => {
+  handleItemClickBakeryAndBread = (e, { name }) => {
     const filtered = this.state.products.filter(
       product => product.category === "Bakery & Bread"
     );
     this.setState({ activeItem: name, filteredProducts: filtered });
   };
 
-  handleItemClickDairyAndEggs = name => {
+  handleItemClickDairyAndEggs = (e, { name }) => {
     const filtered = this.state.products.filter(
       product => product.category === "Dairy & Eggs"
     );
     this.setState({ activeItem: name, filteredProducts: filtered });
   };
 
-  handleItemClickFrozenFoods = name => {
+  handleItemClickFrozenFoods = (e, { name }) => {
     const filtered = this.state.products.filter(
       product => product.category === "Frozen Food"
     );
     this.setState({ activeItem: name, filteredProducts: filtered });
   };
 
-  handleItemClickPantry = name => {
+  handleItemClickPantry = (e, { name }) => {
     const filtered = this.state.products.filter(
       product => product.category === "Pantry"
     );
@@ -133,7 +134,7 @@ class ProductListing extends React.Component {
                     />
                     <Menu.Item
                       name="Fruits and Vegetables"
-                      active={activeItem === "Fruits & Vegetables"}
+                      active={activeItem === "Fruits and Vegetables"}
                       onClick={this.handleItemClickFruitsAndVegetables}
                     />
                     <Menu.Item
@@ -143,12 +144,12 @@ class ProductListing extends React.Component {
                     />
                     <Menu.Item
                       name="Bakery and Bread"
-                      active={activeItem === "Bakery & Bread"}
+                      active={activeItem === "Bakery and Bread"}
                       onClick={this.handleItemClickBakeryAndBread}
                     />
                     <Menu.Item
                       name="Dairy and Eggs"
-                      active={activeItem === "Dairy & Eggs"}
+                      active={activeItem === "Dairy and Eggs"}
                       onClick={this.handleItemClickDairyAndEggs}
                     />
                     <Menu.Item

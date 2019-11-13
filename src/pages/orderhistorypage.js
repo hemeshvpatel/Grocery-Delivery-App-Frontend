@@ -11,7 +11,7 @@ export default function Homepage(props) {
       <Header as="h2" icon textAlign="center">
         <Icon name="history" />
         Order History
-        <Header.Subheader>View all delivery orders</Header.Subheader>
+        <Header.Subheader>View all past delivery orders</Header.Subheader>
       </Header>
       <br />
       <OrderHistory />
