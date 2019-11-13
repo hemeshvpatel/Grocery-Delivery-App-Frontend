@@ -2,16 +2,27 @@ import React from "react";
 // import ReactDOM from "react-dom";
 
 import ProductListItem from "./product-list-item";
-import { Grid, Card, Dimmer, Loader, Menu, Input } from "semantic-ui-react";
+import {
+  Grid,
+  Card,
+  Dimmer,
+  Loader,
+  Menu,
+  Input,
+  Pagination
+} from "semantic-ui-react";
 import { connect } from "react-redux";
 
 import fetchApi from "../../modules/fetch-api";
+import PaginationCompact from "../../components/PaginationCompact";
 
 class ProductListing extends React.Component {
   state = {
     loading: true,
     search: "",
-    activeItem: "All"
+    activeItem: "All",
+    filteredProducts: [],
+    pageSize: 3
   };
 
   componentDidMount() {
@@ -51,6 +62,10 @@ class ProductListing extends React.Component {
     this.setState({
       filteredProducts: searchResults
     });
+  };
+
+  handlePageChange = page => {
+    console.log(page);
   };
 
   handleItemClickAll = (e, { name }) => {
@@ -197,6 +212,11 @@ class ProductListing extends React.Component {
             </Grid.Column>
           </Grid>
         )}
+        <PaginationCompact
+          itemsCount={this.state.filteredProducts.length}
+          pageSize={this.state.pageSize}
+          onPageChange={this.handlePageChange}
+        />
       </div>
     );
   }
