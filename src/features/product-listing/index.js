@@ -108,7 +108,9 @@ class ProductListing extends React.Component {
         {this.state.loading ? (
           <div>
             <Dimmer active inverted>
-              <Loader size="massive">Loading</Loader>
+              <Loader size="massive">
+                Picking fresh products for you to shop!
+              </Loader>
             </Dimmer>
           </div>
         ) : (

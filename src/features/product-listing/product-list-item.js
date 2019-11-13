@@ -3,7 +3,7 @@ import React from "react";
 import AddBtn from "./add-btn";
 import RmvBtn from "./rmv-btn";
 
-import { Image, Card } from "semantic-ui-react";
+import { Image, Card, Label } from "semantic-ui-react";
 
 export default function ProductListItem(props) {
   // console.log("product-list-item", props);

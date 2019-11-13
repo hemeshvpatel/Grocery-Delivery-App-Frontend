@@ -9,7 +9,7 @@ export default function Homepage(props) {
     <Container>
       <br></br>
       <Header textAlign="center">
-        Start Shopping - Free Same Day Delivery for orders placed before 2:00pm!{" "}
+        Start Shopping - Free Same Day Delivery for all orders!{" "}
         <Icon name="shipping fast" />
       </Header>
       <br></br>
