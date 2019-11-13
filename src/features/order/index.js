@@ -97,7 +97,7 @@ class Order extends React.Component {
                 return (
                   <Table.Row>
                     <Table.Cell>
-                      <img src={item.product.image_url} width={32} alt="img" />
+                      <img src={item.product.image_url} width={60} alt="img" />
                     </Table.Cell>
                     <Table.Cell>{item.product.name}</Table.Cell>
                     <Table.Cell>{item.quantity}</Table.Cell>
