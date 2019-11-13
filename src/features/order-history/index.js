@@ -40,7 +40,7 @@ class Profile extends React.Component {
           </div>
         ) : (
           <Grid verticalAlign="middle" centered>
-            <Card.Group centered>
+            <Card.Group itemsPerRow={2}>
               {this.state.currentUserOrders.map(order => (
                 <OrderListCard key={order.id} order={order} />
               ))}
