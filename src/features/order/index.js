@@ -2,7 +2,16 @@ import React from "react";
 
 import fetchApi from "../../modules/fetch-api";
 
-import { Container, Dimmer, Loader } from "semantic-ui-react";
+import {
+  Dimmer,
+  Loader,
+  Segment,
+  Header,
+  Grid,
+  Icon,
+  Container,
+  Table
+} from "semantic-ui-react";
 
 class Order extends React.Component {
   state = {
@@ -31,40 +40,78 @@ class Order extends React.Component {
       state,
       zipcode,
       deliverytime,
-      order_items
+      order_items,
+      order_total
     } = this.state.order;
     return (
       <Container>
-        <h1>Customer Info: </h1>
-        <h2>Name: {name} </h2>
-        <h2>Email: {email} </h2>
-        <br />
-        <h1>Items Ordered:</h1>
-        <ul>
-          {order_items &&
-            order_items.map(item => {
-              let total = item.product.price * item.quantity;
-              let eachPrice = item.product.price * 1;
-              return (
-                <li>
-                  <img src={item.product.image_url} width={32} alt="img" />
-                  {item.product.name}({item.quantity} @ ${eachPrice.toFixed(2)}{" "}
-                  = ${total.toFixed(2)})
-                </li>
-              );
-            })}
-        </ul>
-        <h1>Delivery Info:</h1>
-        <p>Street: {street} </p>
-        <p>City: {city} </p>
-        <p>State: {state} </p>
-        <p>Zip Code: {zipcode} </p>
-        <p>Delivery Time: {deliverytime}</p>
-        <h2>Delivery is on it's way and will arrive between {deliverytime}</h2>
-        <h2>
-          Driver will be delivering your order in a Honda Accord (license plate
-          # 456-7880)
-        </h2>
+        <Segment>
+          <Grid stackable columns={2} relaxed>
+            <Grid.Row>
+              <Grid.Column>
+                <Header as="h3">Your Information</Header>
+                <b>{name} </b>
+                <p>{email} </p>
+              </Grid.Column>
+
+              <Grid.Column>
+                <Header as="h3">Delivery Address</Header>
+                <p>Street: {street} </p>
+                <p>City: {city} </p>
+                <p>State: {state} </p>
+                <p>Zip Code: {zipcode} </p>
+              </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row>
+              <Grid.Column>
+                <Header as="h3">Payment</Header>
+                <Icon size="large" name="cc visa" />
+                <p>Visa card ending in 1234</p>
+              </Grid.Column>
+
+              <Grid.Column>
+                <Header>Delivery Details</Header>
+                <p>ETA {deliverytime}</p>
+                <p>Delivery via Honda Accord (license plate # 478-DT56)</p>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Segment>
+
+        <Table>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Item Image</Table.HeaderCell>
+              <Table.HeaderCell>Item</Table.HeaderCell>
+              <Table.HeaderCell>Quantity</Table.HeaderCell>
+              <Table.HeaderCell>Delivery</Table.HeaderCell>
+              <Table.HeaderCell>Price</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {order_items &&
+              order_items.map(item => {
+                let total = item.product.price * item.quantity;
+                // let eachPrice = item.product.price * 1;
+                return (
+                  <Table.Row>
+                    <Table.Cell>
+                      <img src={item.product.image_url} width={32} alt="img" />
+                    </Table.Cell>
+                    <Table.Cell>{item.product.name}</Table.Cell>
+                    <Table.Cell>{item.quantity}</Table.Cell>
+                    <Table.Cell>Free</Table.Cell>
+                    <Table.Cell>${total.toFixed(2)}</Table.Cell>
+                  </Table.Row>
+                );
+              })}
+          </Table.Body>
+        </Table>
+
+        <Segment floated="right" textAlign="center">
+          <h3>Order Total ${parseFloat(order_total).toFixed(2)}</h3>
+        </Segment>
       </Container>
     );
   }

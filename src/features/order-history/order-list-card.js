@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Card } from "semantic-ui-react";
+import { Card, List, Image } from "semantic-ui-react";
 
 function OrderListCard(props) {
-  //console.log("Order List Item return: ", props);
+  console.log("Order List Item return: ", props);
   //const date = new Date(props.order.created_at);
   //console.log(date);
   return (
@@ -14,16 +14,20 @@ function OrderListCard(props) {
           Ordered on {props.order.created_at.substring(0, 10)}
         </Card.Meta>
         <Card.Description>
-          Order Total: ${props.order.order_total}{" "}
+          Total: ${parseFloat(props.order.order_total).toFixed(2)}{" "}
         </Card.Description>
         <br></br>
+
         <Card.Description>
-          <u>Items Ordered:</u>
-          {props.order.order_items.map(item => (
-            <li key={item.id}>
-              {item.quantity}x {item.product.name}
-            </li>
-          ))}
+          <u>Items Ordered</u>
+          <List>
+            {props.order.order_items.map(item => (
+              <List.Item key={item.id}>
+                <Image avatar src={item.product.image_url} />
+                <List.Content>{item.product.name}</List.Content>
+              </List.Item>
+            ))}
+          </List>
         </Card.Description>
       </Card.Content>
     </Card>
