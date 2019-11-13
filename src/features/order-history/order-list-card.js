@@ -1,11 +1,15 @@
 import React from "react";
+import { Link, withRouter } from "react-router-dom";
 
-import { Card, List, Image } from "semantic-ui-react";
+import { Card, List, Image, Segment, Button } from "semantic-ui-react";
+
+// handleOnClickCard = () => {};
 
 function OrderListCard(props) {
   console.log("Order List Item return: ", props);
   //const date = new Date(props.order.created_at);
   //console.log(date);
+  const orderLink = `/orders/${props.order.id}`;
   return (
     <Card key={props.order.id} color="green">
       <Card.Content textAlign="center">
@@ -30,8 +34,13 @@ function OrderListCard(props) {
           </List>
         </Card.Description>
       </Card.Content>
+      <Card.Content extra textAlign="center">
+        <Link to={orderLink}>
+          <Button color="green">View Full Order Details</Button>
+        </Link>
+      </Card.Content>
     </Card>
   );
 }
 
-export default OrderListCard;
+export default withRouter(OrderListCard);
