@@ -15,11 +15,9 @@ class Profile extends React.Component {
       `https://grocery-delivery-backend.herokuapp.com/api/v1/orders`
     ).then(json => {
       const data = json;
-      console.log("DATA ====", data);
       const filtered = data.filter(order => {
         return order.user_id === this.currentUser.id;
       });
-      console.log(filtered);
       this.setState({
         allOrders: json,
         currentUserOrders: filtered,
@@ -29,13 +27,12 @@ class Profile extends React.Component {
   }
 
   render() {
-    console.log("ORDER HISTORY: ", this.state);
     return (
       <div>
         {this.state.loading ? (
           <div>
             <Dimmer active inverted>
-              <Loader size="massive">Loading</Loader>
+              <Loader size="massive">Loading your Order History ...</Loader>
             </Dimmer>
           </div>
         ) : (

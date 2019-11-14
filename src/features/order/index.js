@@ -95,7 +95,7 @@ class Order extends React.Component {
                 let total = item.product.price * item.quantity;
                 // let eachPrice = item.product.price * 1;
                 return (
-                  <Table.Row>
+                  <Table.Row key={item.id}>
                     <Table.Cell>
                       <img src={item.product.image_url} width={60} alt="img" />
                     </Table.Cell>

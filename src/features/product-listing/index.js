@@ -1,5 +1,4 @@
 import React from "react";
-// import ReactDOM from "react-dom";
 
 import ProductListItem from "./product-list-item";
 import {
@@ -12,9 +11,9 @@ import {
   Pagination
 } from "semantic-ui-react";
 import { connect } from "react-redux";
+import { paginate } from "../../utils/paginate";
 
 import fetchApi from "../../modules/fetch-api";
-import PaginationCompact from "../../components/PaginationCompact";
 
 class ProductListing extends React.Component {
   state = {
@@ -22,7 +21,8 @@ class ProductListing extends React.Component {
     search: "",
     activeItem: "All",
     filteredProducts: [],
-    pageSize: 3
+    pageSize: 8,
+    activePage: 1
   };
 
   componentDidMount() {
@@ -64,60 +64,94 @@ class ProductListing extends React.Component {
     });
   };
 
-  handlePageChange = page => {
-    console.log(page);
+  handlePageChange = (e, { activePage }) => {
+    this.setState({ activePage });
   };
 
   handleItemClickAll = (e, { name }) => {
-    this.setState({ activeItem: name, filteredProducts: this.props.products });
+    this.setState({
+      activeItem: name,
+      filteredProducts: this.props.products,
+      activePage: 1
+    });
   };
 
   handleItemClickFruitsAndVegetables = (e, { name }) => {
     const filtered = this.state.products.filter(
       product => product.category === "Fruits & Vegetables"
     );
-    this.setState({ activeItem: name, filteredProducts: filtered });
+    this.setState({
+      activeItem: name,
+      filteredProducts: filtered,
+      activePage: 1
+    });
   };
 
   handleItemClickBeverages = (e, { name }) => {
     const filtered = this.state.products.filter(
       product => product.category === "Beverages"
     );
-    this.setState({ activeItem: name, filteredProducts: filtered });
+    this.setState({
+      activeItem: name,
+      filteredProducts: filtered,
+      activePage: 1
+    });
   };
 
   handleItemClickBakeryAndBread = (e, { name }) => {
     const filtered = this.state.products.filter(
       product => product.category === "Bakery & Bread"
     );
-    this.setState({ activeItem: name, filteredProducts: filtered });
+    this.setState({
+      activeItem: name,
+      filteredProducts: filtered,
+      activePage: 1
+    });
   };
 
   handleItemClickDairyAndEggs = (e, { name }) => {
     const filtered = this.state.products.filter(
       product => product.category === "Dairy & Eggs"
     );
-    this.setState({ activeItem: name, filteredProducts: filtered });
+    this.setState({
+      activeItem: name,
+      filteredProducts: filtered,
+      activePage: 1
+    });
   };
 
   handleItemClickFrozenFoods = (e, { name }) => {
     const filtered = this.state.products.filter(
       product => product.category === "Frozen Food"
     );
-    this.setState({ activeItem: name, filteredProducts: filtered });
+    this.setState({
+      activeItem: name,
+      filteredProducts: filtered,
+      activePage: 1
+    });
   };
 
   handleItemClickPantry = (e, { name }) => {
     const filtered = this.state.products.filter(
       product => product.category === "Pantry"
     );
-    this.setState({ activeItem: name, filteredProducts: filtered });
+    this.setState({
+      activeItem: name,
+      filteredProducts: filtered,
+      activePage: 1
+    });
   };
 
   render() {
-    const { addToCart, removeFromCart, products, cart } = this.props;
-    const { activeItem } = this.state;
-    console.log("Home State: ", this.state);
+    const { addToCart, removeFromCart, cart } = this.props;
+    const { length: count } = this.state.filteredProducts;
+    const { activeItem, pageSize, filteredProducts, activePage } = this.state;
+
+    const pagesCount = Math.ceil(count / pageSize);
+    const paginatedProducts = paginate(filteredProducts, activePage, pageSize);
+    //console.log("Home State: ", this.state);
+    //console.log("Paginated Products", paginatedProducts);
+
     return (
       <div>
         {this.state.loading ? (
@@ -185,7 +219,7 @@ class ProductListing extends React.Component {
             </Grid.Column>
             <Grid.Column width={13}>
               <Card.Group itemsPerRow={4}>
-                {this.state.filteredProducts.length === 0
+                {/* {this.state.filteredProducts.length === 0
                   ? products.map(product => (
                       <ProductListItem
                         key={product.id}
@@ -207,16 +241,38 @@ class ProductListing extends React.Component {
                           cart.filter(cartItem => cartItem.id === product.id)[0]
                         }
                       />
-                    ))}
+                    ))} */}
+
+                {paginatedProducts.map(product => (
+                  <ProductListItem
+                    key={product.id}
+                    product={product}
+                    addToCart={addToCart}
+                    removeFromCart={removeFromCart}
+                    cartItem={
+                      cart.filter(cartItem => cartItem.id === product.id)[0]
+                    }
+                  />
+                ))}
               </Card.Group>
             </Grid.Column>
           </Grid>
         )}
-        <PaginationCompact
-          itemsCount={this.state.filteredProducts.length}
-          pageSize={this.state.pageSize}
+        {/* <PaginationCompact
+          itemsCount={count}
+          pageSize={pageSize}
+          currentPage={currentPage}
           onPageChange={this.handlePageChange}
-        />
+        /> */}
+        <div align="right">
+          <br></br>
+          <Pagination
+            activePage={activePage}
+            siblingRange={10}
+            totalPages={pagesCount}
+            onPageChange={this.handlePageChange}
+          ></Pagination>
+        </div>
       </div>
     );
   }
