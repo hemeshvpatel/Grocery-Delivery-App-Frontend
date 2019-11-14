@@ -21,7 +21,7 @@ class ProductListing extends React.Component {
     search: "",
     activeItem: "All",
     filteredProducts: [],
-    pageSize: 8,
+    pageSize: 12,
     activePage: 1
   };
 
