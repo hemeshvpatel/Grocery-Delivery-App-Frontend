@@ -1,14 +1,9 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 
-import { Card, List, Image, Segment, Button } from "semantic-ui-react";
-
-// handleOnClickCard = () => {};
+import { Card, List, Image, Button } from "semantic-ui-react";
 
 function OrderListCard(props) {
-  console.log("Order List Item return: ", props);
-  //const date = new Date(props.order.created_at);
-  //console.log(date);
   const orderLink = `/orders/${props.order.id}`;
   return (
     <Card key={props.order.id} color="green">

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Field, reduxForm } from "redux-form";
 
-import { Container, Form, Button, Checkbox } from "semantic-ui-react";
+import { Container, Form, Button } from "semantic-ui-react";
 
 import Select from "../../modules/select";
 
@@ -13,15 +13,6 @@ function CheckoutForm(props) {
     <Container>
       <Form onSubmit={handleSubmit}>
         <h2>Add Delivery Address:</h2>
-        {/* <Form.Field required>
-          <label htmlFor="order[name]">Name:</label>
-          <Field name="order[name]" component="input" type="text" />
-        </Form.Field>
-
-        <Form.Field required>
-          <label htmlFor="order[email]">Email:</label>
-          <Field name="order[email]" component="input" type="email" />
-        </Form.Field> */}
 
         <Form.Field required>
           <label htmlFor="order[street]">Street:</label>
@@ -63,12 +54,7 @@ function CheckoutForm(props) {
               "8:00pm - 9:00pm": "8:00pm - 9:00pm"
             }}
           ></Field>
-          {/* <Field name="order[deliverytime]" component="input"  /> */}
         </Form.Field>
-        {/* 
-        <Form.Field required>
-          <Checkbox label="I agree to the Terms and Conditions" />
-        </Form.Field> */}
 
         <Button color="green" type="submit">
           Place Order
@@ -83,5 +69,3 @@ CheckoutForm = reduxForm({
 })(CheckoutForm);
 
 export default CheckoutForm;
-
-//add placeholders for all fields
